@@ -1,0 +1,48 @@
+/* Loading Screen Styles */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loader-brand {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+.loader-text {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+  color: #666;
+}
+
+.loader-progress-container {
+  width: 200px;
+  height: 2px;
+  background-color: #f0f0f0;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.loader-progress-bar {
+  height: 100%;
+  background-color: #000000;
+  border-radius: 1px;
+}
+
+.loader-percentage {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 400;
+}
