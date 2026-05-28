@@ -31,7 +31,7 @@ const aboutSections = [
   },
 ];
 
-export default function About() {
+export default function LeKoinpost() {
   const [activeSection, setActiveSection] = useState(aboutSections[0].id);
   const section =
     aboutSections.find((item) => item.id === activeSection) ?? aboutSections[0];

@@ -26,16 +26,8 @@ export default function HomeNavigation() {
           <Link to="/film-practice" className="nav-link">
             Film Practice
           </Link>
-          <a
-            href="https://www.lekoinpost.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-link"
-          >
+          <Link to="/koinpost" className="nav-link">
             Le Koinpost
-          </a>
-          <Link to="/about" className="nav-link">
-            About
           </Link>
           <Link to="/consulting" className="nav-link">
             Consulting
@@ -57,14 +49,9 @@ export default function HomeNavigation() {
           </Link>
         </motion.div>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <a
-            href="https://www.lekoinpost.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-link"
-          >
+          <Link to="/koinpost" className="nav-link">
             Le Koinpost
-          </a>
+          </Link>
         </motion.div>
       </div>
 
@@ -75,11 +62,6 @@ export default function HomeNavigation() {
       </motion.div>
 
       <div className="nav-right">
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Link to="/about" className="nav-link">
-            About
-          </Link>
-        </motion.div>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link to="/consulting" className="nav-link">
             Consulting
