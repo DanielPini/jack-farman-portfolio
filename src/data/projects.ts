@@ -200,7 +200,7 @@ export const projects: Project[] = [
   {
     id: 2,
     slug: "especes-pionnieres-part-1",
-    title: "Espèces Pionnières Part 1",
+    title: "faire oeuvre, faire écosystème",
     director: "Jack Farman",
     year: 2024,
     media: "/videos/especes_pionnieres_1.mp4",
@@ -224,7 +224,7 @@ export const projects: Project[] = [
   {
     id: 3,
     slug: "especes-pionnieres-part-2",
-    title: "Espèces Pionnières Part 2",
+    title: "exposome",
     director: "Jack Farman",
     year: 2025,
     media: "/videos/especes_pionnieres_2.mp4",
@@ -248,7 +248,7 @@ export const projects: Project[] = [
   {
     id: 4,
     slug: "especes-pionnieres-part-3",
-    title: "Espèces Pionnières Part 3",
+    title: "eaux et pays",
     director: "Jack Farman",
     year: 2026,
     media: "/videos/especes_pionnieres_3.mp4",

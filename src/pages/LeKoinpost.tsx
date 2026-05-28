@@ -1,7 +1,9 @@
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import PageWrapper from "../components/layout/PageWrapper";
 import HomeNavigation from "../components/layout/HomeNavigation";
+import KoinpostMap from "../components/koinpost/KoinpostMap";
+import PhotoGallery from "../components/koinpost/PhotoGallery";
 
 const aboutSections = [
   {
@@ -15,26 +17,40 @@ const aboutSections = [
   },
   {
     id: "koinpost",
-    title: "Koinpost",
+    title: "Le Koinpost",
     paragraphs: [
       "Koinpost is a collective composting platform that operates at the scale of the neighbourhood. It is at once an act of urban gardening, a lived experience of decomposition as life cycle, and a tool for building more connected local territories.",
       "Born from the same questions that drive my film practice, Koinpost translates narrative into infrastructure, turning the gestures of care and repair into something people can participate in together.",
+      "Learn more at ",
     ],
   },
   {
     id: "consulting",
     title: "Consulting",
     paragraphs: [
-      "I work alongside architects, urban planners, and designers on territorial and urban programming projects. My role is to bring the narrative layer of a place into the design process, drawing on fieldwork, community engagement, and documentary methods to surface what already exists before a project begins.",
+      "I work with architects, urban planners, and designers on territorial and urban programming projects. My role is to bring the narrative layer of a place into the design process, drawing on fieldwork, community engagement, and documentary methods to surface what already exists before a project begins.",
       "Each collaboration starts from the same question: what story does this place already hold?",
     ],
   },
 ];
 
 export default function LeKoinpost() {
-  const [activeSection, setActiveSection] = useState(aboutSections[0].id);
+  const [activeSection, setActiveSection] = useState(aboutSections[1].id);
+  const [activeLocationId, setActiveLocationId] = useState<string | null>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+
   const section =
     aboutSections.find((item) => item.id === activeSection) ?? aboutSections[0];
+
+  const handleLocationClick = (locationId: string) => {
+    setActiveLocationId(locationId);
+    // Scroll to gallery
+    setTimeout(() => {
+      galleryRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
+  const isKoinpostSection = activeSection === "koinpost";
 
   return (
     <PageWrapper>
@@ -64,7 +80,10 @@ export default function LeKoinpost() {
                   type="button"
                   role="tab"
                   aria-selected={item.id === activeSection}
-                  onClick={() => setActiveSection(item.id)}
+                  onClick={() => {
+                    setActiveSection(item.id);
+                    setActiveLocationId(null);
+                  }}
                 >
                   {item.title}
                 </button>
@@ -81,8 +100,30 @@ export default function LeKoinpost() {
             >
               <h3>{section.title}</h3>
               {section.paragraphs.map((text, index) => (
-                <p key={index}>{text}</p>
+                <p key={index}>
+                  {text}
+                  {index === section.paragraphs.length - 1 &&
+                    isKoinpostSection && (
+                      <a
+                        href="https://lekoinpost.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="koinpost-link"
+                      >
+                        lekoinpost.com
+                      </a>
+                    )}
+                </p>
               ))}
+
+              {isKoinpostSection && (
+                <>
+                  <KoinpostMap onLocationClick={handleLocationClick} />
+                  <div ref={galleryRef}>
+                    <PhotoGallery activeLocationId={activeLocationId} />
+                  </div>
+                </>
+              )}
             </motion.div>
           </div>
         </motion.div>

@@ -783,6 +783,18 @@ button[type="submit"]:disabled {
   margin-top: 2rem;
 }
 
+/* Koinpost Link Styles */
+.koinpost-link {
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.koinpost-link:hover {
+  opacity: 0.7;
+}
+
 /* Video Player Styles */
 .video-player {
   position: relative;
