@@ -795,24 +795,6 @@ button[type="submit"]:disabled {
   opacity: 0.7;
 }
 
-/* Video Player Styles */
-.video-player {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.video-overlay {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-  color: white;
-  z-index: 10;
-}
 
 /* Home Navigation Styles */
 .home-navigation {
