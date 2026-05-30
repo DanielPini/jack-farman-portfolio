@@ -5,42 +5,19 @@ import HomeNavigation from "../components/layout/HomeNavigation";
 import KoinpostMap from "../components/koinpost/KoinpostMap";
 import PhotoGallery from "../components/koinpost/PhotoGallery";
 
-const aboutSections = [
-  {
-    id: "film-practice",
-    title: "Film Practice",
-    paragraphs: [
-      "I make documentary films rooted in fieldwork. In my latest series espèces pionnieres, each film takes a set of everyday gestures as its starting point (planting, composting, searching for water) and follows the narrative that emerges from them.",
-      "Working at the intersection of ethnographic film and ecological inquiry, I collaborate with scientists, urban planners, and communities to make visible the stories a territory holds before anything is added or changed.",
-      "My work has been developed through the LINA platform and in collaboration with institutions including the Centre Pompidou.",
-    ],
-  },
-  {
-    id: "koinpost",
-    title: "Le Koinpost",
-    paragraphs: [
-      "Koinpost is a collective composting platform that operates at the scale of the neighbourhood. It is at once an act of urban gardening, a lived experience of decomposition as life cycle, and a tool for building more connected local territories.",
-      "Born from the same questions that drive my film practice, Koinpost translates narrative into infrastructure, turning the gestures of care and repair into something people can participate in together.",
-      "Learn more at ",
-    ],
-  },
-  {
-    id: "consulting",
-    title: "Consulting",
-    paragraphs: [
-      "I work with architects, urban planners, and designers on territorial and urban programming projects. My role is to bring the narrative layer of a place into the design process, drawing on fieldwork, community engagement, and documentary methods to surface what already exists before a project begins.",
-      "Each collaboration starts from the same question: what story does this place already hold?",
-    ],
-  },
-];
+const koinpostObject = {
+  id: "koinpost",
+  title: "Le Koinpost",
+  paragraphs: [
+    "Koinpost is a collective composting platform that operates at the scale of the neighbourhood. It is at once an act of urban gardening, a lived experience of decomposition as life cycle, and a tool for building more connected local territories.",
+    "Born from the same questions that drive my film practice, Koinpost translates narrative into infrastructure, turning the gestures of care and repair into something people can participate in together.",
+    "Learn more at ",
+  ],
+};
 
 export default function LeKoinpost() {
-  const [activeSection, setActiveSection] = useState(aboutSections[1].id);
   const [activeLocationId, setActiveLocationId] = useState<string | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
-
-  const section =
-    aboutSections.find((item) => item.id === activeSection) ?? aboutSections[0];
 
   const handleLocationClick = (locationId: string) => {
     setActiveLocationId(locationId);
@@ -49,8 +26,6 @@ export default function LeKoinpost() {
       galleryRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
-
-  const isKoinpostSection = activeSection === "koinpost";
 
   return (
     <PageWrapper>
@@ -73,57 +48,47 @@ export default function LeKoinpost() {
             </motion.h2>
 
             <div className="about-tabs" role="tablist">
-              {aboutSections.map((item) => (
-                <button
-                  key={item.id}
-                  className={`about-tab ${item.id === activeSection ? "active" : ""}`}
-                  type="button"
-                  role="tab"
-                  aria-selected={item.id === activeSection}
-                  onClick={() => {
-                    setActiveSection(item.id);
-                    setActiveLocationId(null);
-                  }}
-                >
-                  {item.title}
-                </button>
-              ))}
+              <button
+                key={koinpostObject.id}
+                className={`about-tab active`}
+                type="button"
+                role="tab"
+                aria-selected={true}
+              >
+                {koinpostObject.title}
+              </button>
             </div>
 
             <motion.div
               className="about-tab-content"
-              key={section.id}
+              key={koinpostObject.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               role="tabpanel"
             >
-              <h3>{section.title}</h3>
-              {section.paragraphs.map((text, index) => (
+              <h3>{koinpostObject.title}</h3>
+              {koinpostObject.paragraphs.map((text, index) => (
                 <p key={index}>
                   {text}
-                  {index === section.paragraphs.length - 1 &&
-                    isKoinpostSection && (
-                      <a
-                        href="https://lekoinpost.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="koinpost-link"
-                      >
-                        lekoinpost.com
-                      </a>
-                    )}
+                  {index === koinpostObject.paragraphs.length - 1 && true && (
+                    <a
+                      href="https://lekoinpost.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="koinpost-link"
+                    >
+                      lekoinpost.com
+                    </a>
+                  )}
                 </p>
               ))}
-
-              {isKoinpostSection && (
-                <>
-                  <KoinpostMap onLocationClick={handleLocationClick} />
-                  <div ref={galleryRef}>
-                    <PhotoGallery activeLocationId={activeLocationId} />
-                  </div>
-                </>
-              )}
+              <>
+                <KoinpostMap onLocationClick={handleLocationClick} />
+                <div ref={galleryRef}>
+                  <PhotoGallery activeLocationId={activeLocationId} />
+                </div>
+              </>
             </motion.div>
           </div>
         </motion.div>

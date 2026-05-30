@@ -37,23 +37,24 @@ export default function KoinpostMap({ onLocationClick }: KoinpostMapProps) {
   return (
     <div className="koinpost-map-container">
       <div className="map-wrapper">
+        <img
+          src="../../public/images/france_map.webp"
+          alt="Map of France"
+          width="50%"
+        />
         <svg
+          style={{ position: "absolute", top: "0", left: "0" }}
           className="map-svg"
           viewBox="0 0 100 100"
           preserveAspectRatio="xMidYMid meet"
         >
-          {/* Simple map background */}
-          <rect width="100" height="100" fill="#f5f5f5" />
-          <circle cx="35" cy="45" r="2" fill="#e0e0e0" />
-          <circle cx="65" cy="55" r="2" fill="#e0e0e0" />
-
           {/* Markers */}
           {locations.map((location) => (
             <g key={location.id}>
               <motion.circle
                 cx={location.x}
                 cy={location.y}
-                r="3.5"
+                r="2"
                 fill="#000"
                 className="map-marker"
                 whileHover={{ r: 5 }}
