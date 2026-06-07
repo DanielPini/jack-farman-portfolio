@@ -47,6 +47,14 @@ export default function LeKoinpost() {
                 </a>
               </p>
               <KoinpostMap />
+
+              <div className="koinpost-pdf-wrapper">
+                <img
+                  src="/pancarte_koinpost.webp"
+                  alt="Pancarte Koinpost"
+                  className="koinpost-pdf"
+                />
+              </div>
             </motion.div>
           </div>
         </motion.div>

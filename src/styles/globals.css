@@ -776,6 +776,17 @@ button[type="submit"]:disabled {
   opacity: 0.7;
 }
 
+.koinpost-pdf-wrapper {
+  margin-top: 3rem;
+}
+
+.koinpost-pdf {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
 
 /* Home Navigation Styles */
 .home-navigation {
