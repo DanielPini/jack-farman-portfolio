@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import "./Loader.css";
+import { useLang } from "../../context/LanguageContext";
+import { translations } from "../../i18n/translations";
 
 interface LoaderProps {
   onComplete: () => void;
@@ -8,6 +10,8 @@ interface LoaderProps {
 
 export default function Loader({ onComplete }: LoaderProps) {
   const [progress, setProgress] = useState(0);
+  const { lang } = useLang();
+  const loadingText = translations[lang].loader.loading;
 
   useEffect(() => {
     // Simulate loading progress over 3 seconds
@@ -55,14 +59,13 @@ export default function Loader({ onComplete }: LoaderProps) {
         Jack Farman
       </motion.div>
 
-      {/* Loading text */}
       <motion.div
         className="loader-text"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        Loading
+        {loadingText}
       </motion.div>
 
       {/* Progress bar container */}

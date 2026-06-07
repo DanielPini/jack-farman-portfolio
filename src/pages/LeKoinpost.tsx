@@ -3,16 +3,14 @@ import { useRef, useState } from "react";
 import PageWrapper from "../components/layout/PageWrapper";
 import KoinpostMap from "../components/koinpost/KoinpostMap";
 import PhotoGallery from "../components/koinpost/PhotoGallery";
-
-const paragraphs = [
-  "Koinpost is a collective composting platform that operates at the scale of the neighbourhood. It is at once an act of urban gardening, a lived experience of decomposition as life cycle, and a tool for building more connected local territories.",
-  "Born from the same questions that drive my film practice, Koinpost translates narrative into infrastructure, turning the gestures of care and repair into something people can participate in together.",
-  "Learn more at ",
-];
+import { useLang } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
 export default function LeKoinpost() {
   const [activeLocationId, setActiveLocationId] = useState<string | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLang();
+  const t = translations[lang].leKoinpost;
 
   const handleLocationClick = (locationId: string) => {
     setActiveLocationId(locationId);
@@ -37,22 +35,21 @@ export default function LeKoinpost() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h3>Le Koinpost</h3>
-              {paragraphs.map((text, index) => (
-                <p key={index}>
-                  {text}
-                  {index === paragraphs.length - 1 && (
-                    <a
-                      href="https://lekoinpost.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="koinpost-link"
-                    >
-                      lekoinpost.com
-                    </a>
-                  )}
-                </p>
+              <h3>{t.heading}</h3>
+              {t.paragraphs.map((text, index) => (
+                <p key={index}>{text}</p>
               ))}
+              <p>
+                {t.learnMorePrefix}
+                <a
+                  href="https://lekoinpost.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="koinpost-link"
+                >
+                  lekoinpost.com
+                </a>
+              </p>
               <KoinpostMap onLocationClick={handleLocationClick} />
               <div ref={galleryRef}>
                 <PhotoGallery activeLocationId={activeLocationId} />

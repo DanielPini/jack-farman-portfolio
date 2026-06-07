@@ -1,7 +1,12 @@
 import { motion } from "motion/react";
 import PageWrapper from "../components/layout/PageWrapper";
+import { useLang } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
 export default function Consulting() {
+  const { lang } = useLang();
+  const t = translations[lang].consulting;
+
   return (
     <PageWrapper>
       <div className="page">
@@ -18,7 +23,7 @@ export default function Consulting() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-center"
             >
-              Consulting
+              {t.heading}
             </motion.h2>
 
             <motion.div
@@ -26,15 +31,7 @@ export default function Consulting() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <p>
-                I work with architects, urban planners, and designers on
-                territorial and urban programming projects, bringing the
-                narrative layers of a place into the design process drawing on
-                fieldwork, design fiction, and documentary methods to surface
-                what already exists before a project begins. Each collaboration
-                starts from the same question: what story does a place already
-                hold?
-              </p>
+              <p>{t.body}</p>
             </motion.div>
           </div>
         </motion.div>

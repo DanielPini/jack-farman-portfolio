@@ -4,6 +4,8 @@ import { useMemo, useState, type ReactNode } from "react";
 import PageWrapper from "../components/layout/PageWrapper";
 import WorkMedia from "../components/work/WorkMedia";
 import { projects, type ContentBlock } from "../data/projects";
+import { useLang } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
 const footnoteMarkers: Record<string, string> = {
   "¹": "1",
@@ -78,6 +80,10 @@ function renderBlock(block: ContentBlock, index: number) {
 
 export default function ProjectPage() {
   const { slug } = useParams();
+  const { lang } = useLang();
+  const t = translations[lang].project;
+  const tFilm = translations[lang].filmPractice;
+
   const project = projects.find(
     (project) => project.slug === slug || String(project.id) === slug,
   );
@@ -85,18 +91,31 @@ export default function ProjectPage() {
 
   const sections = useMemo(() => {
     if (!project) return [];
-    if (project.sections && project.sections.length > 0) {
-      return project.sections;
+    const localSections =
+      lang === "fr" && project.sectionsFr?.length
+        ? project.sectionsFr
+        : project.sections;
+    if (localSections && localSections.length > 0) {
+      return localSections;
     }
-    return [
-      {
-        title: project.title,
-        content: project.content ?? [],
-      },
-    ];
-  }, [project]);
+    const content =
+      lang === "fr" && project.contentFr?.length
+        ? project.contentFr
+        : project.content;
+    return [{ title: project.title, content: content ?? [] }];
+  }, [project, lang]);
 
   const activeSection = sections[activeIndex] ?? sections[0];
+
+  const description =
+    lang === "fr" && project?.descriptionFr
+      ? project.descriptionFr
+      : project?.description;
+
+  const footnotes =
+    lang === "fr" && project?.footnotesFr?.length
+      ? project.footnotesFr
+      : project?.footnotes;
 
   const relatedFilms = useMemo(
     () =>
@@ -115,10 +134,10 @@ export default function ProjectPage() {
       <PageWrapper>
         <div className="page project-page project-not-found">
           <div className="project-header">
-            <h1>Project not found</h1>
-            <p>We couldn’t find the project you were looking for.</p>
+            <h1>{t.notFound}</h1>
+            <p>{t.notFoundBody}</p>
             <Link to="/film-practice" className="button button-secondary">
-              Back to Film Practice
+              {tFilm.backToList}
             </Link>
           </div>
         </div>
@@ -131,17 +150,17 @@ export default function ProjectPage() {
       <div className="page project-page">
         <div className="project-hero">
           <div className="project-header">
-            <div className="project-kicker">Project</div>
+            <div className="project-kicker">{t.kicker}</div>
             <h1>{project.title}</h1>
             <p className="project-meta">
               {project.year} • {project.category}
-              {project.director ? ` • Directed by ${project.director}` : ""}
+              {project.director ? ` • ${tFilm.directedBy} ${project.director}` : ""}
             </p>
-            {project.description && (
-              <p className="project-description">{project.description}</p>
+            {description && (
+              <p className="project-description">{description}</p>
             )}
             <Link to="/film-practice" className="button button-secondary">
-              Back to Film Practice
+              {tFilm.backToList}
             </Link>
           </div>
         </div>
@@ -177,11 +196,11 @@ export default function ProjectPage() {
             </div>
           ) : null}
 
-          {project.footnotes?.length ? (
+          {footnotes?.length ? (
             <div className="project-footnotes">
-              <h3>Footnotes</h3>
+              <h3>{t.footnotes}</h3>
               <ol>
-                {project.footnotes.map((footnote) => (
+                {footnotes.map((footnote) => (
                   <li key={footnote.number} id={`footnote-${footnote.number}`}>
                     {footnote.text}
                   </li>
@@ -192,7 +211,7 @@ export default function ProjectPage() {
 
           {relatedFilms.length > 1 && (
             <div className="project-related-films">
-              <h2>Films</h2>
+              <h2>{t.films}</h2>
               <div className="related-film-list">
                 {relatedFilms
                   .filter((item) => item.slug !== project.slug)
@@ -210,7 +229,7 @@ export default function ProjectPage() {
                         <h3>{film.title}</h3>
                       </Link>
                       <p className="project-block-paragraph">
-                        {film.year} • Directed by {film.director}
+                        {film.year} • {tFilm.directedBy} {film.director}
                       </p>
                     </motion.div>
                   ))}

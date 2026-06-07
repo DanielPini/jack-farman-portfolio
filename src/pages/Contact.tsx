@@ -2,9 +2,9 @@ import { useState } from "react";
 import type { FormEvent, ChangeEvent } from "react";
 import PageWrapper from "../components/layout/PageWrapper";
 import { motion } from "motion/react";
+import { useLang } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
-// TypeScript interface for form data
-// This defines the exact shape of our form state
 interface FormData {
   name: string;
   email: string;
@@ -12,59 +12,32 @@ interface FormData {
 }
 
 export default function Contact() {
-  // State for form inputs
-  // FormData interface ensures all properties exist and have correct types
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     message: "",
   });
-
-  // State to track if form is being submitted
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-
-  // State to show success message
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const { lang } = useLang();
+  const t = translations[lang].contact;
 
-  // Handle input changes
-  // ChangeEvent<HTMLInputElement | HTMLTextAreaElement> is the proper TypeScript type for form inputs
-  // This type includes all the event properties like target.name, target.value, etc.
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = event.target;
-
-    // Update state using functional update to ensure we have latest state
-    // The spread operator (...formData) copies all existing properties
-    // Then we override the specific property that changed
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value, // name is a string key, so we use bracket notation
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
-  // FormEvent<HTMLFormElement> is the proper TypeScript type for form submissions
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     setIsSubmitting(true);
-
     try {
-      // Simulate API call - in real app, this would send to a server
-      // setTimeout simulates network delay
       await new Promise((resolve) => setTimeout(resolve, 1500));
-
       console.log("Form submitted:", formData);
-
-      // Reset form
       setFormData({ name: "", email: "", message: "" });
       setIsSubmitted(true);
-
-      // Hide success message after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 3000);
+      setTimeout(() => setIsSubmitted(false), 3000);
     } catch (error) {
       console.error("Form submission error:", error);
     } finally {
@@ -87,7 +60,7 @@ export default function Contact() {
               fontWeight: "300",
             }}
           >
-            Get In Touch
+            {t.heading}
           </motion.h3>
 
           <motion.p
@@ -96,11 +69,9 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             style={{ marginBottom: "3rem", textAlign: "center" }}
           >
-            Have a project in mind? I'd love to hear about it. Send me a message
-            and I'll get back to you as soon as possible.
+            {t.body}
           </motion.p>
 
-          {/* Success message */}
           {isSubmitted && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -115,11 +86,10 @@ export default function Contact() {
                 marginBottom: "20px",
               }}
             >
-              ✓ Thank you! Your message has been sent successfully.
+              {t.success}
             </motion.div>
           )}
 
-          {/* Contact form */}
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 20 }}
@@ -127,7 +97,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <div className="form-group">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">{t.name}</label>
               <input
                 type="text"
                 id="name"
@@ -139,7 +109,7 @@ export default function Contact() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{t.email}</label>
               <input
                 type="email"
                 id="email"
@@ -151,7 +121,7 @@ export default function Contact() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="message">Message</label>
+              <label htmlFor="message">{t.message}</label>
               <textarea
                 id="message"
                 name="message"
@@ -163,7 +133,7 @@ export default function Contact() {
             </div>
 
             <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Sending..." : "Send Message"}
+              {isSubmitting ? t.sending : t.send}
             </button>
           </motion.form>
         </div>

@@ -79,7 +79,6 @@ export default function WorkInfoOverlay({ project, onClose }: Props) {
             {project.title}
           </h2>
 
-          {/* Project metadata */}
           <div
             style={{
               display: "flex",
@@ -92,14 +91,12 @@ export default function WorkInfoOverlay({ project, onClose }: Props) {
             <span>Year: {project.year}</span>
             {project.client && <span>Client: {project.client}</span>}
             {project.director && <span>Director: {project.director}</span>}
-            <span>Type: {project.type}</span>
           </div>
 
-          {/* Project media (if available) */}
-          <div style={{ marginBottom: "20px" }}>
-            {project.type === "image" ? (
+          {project.images?.[0] && (
+            <div style={{ marginBottom: "20px" }}>
               <img
-                src={project.media}
+                src={project.images[0]}
                 alt={project.title}
                 style={{
                   width: "100%",
@@ -107,22 +104,11 @@ export default function WorkInfoOverlay({ project, onClose }: Props) {
                   marginBottom: "20px",
                 }}
               />
-            ) : (
-              <video
-                src={project.media}
-                controls
-                style={{
-                  width: "100%",
-                  borderRadius: "8px",
-                  marginBottom: "20px",
-                }}
-              />
-            )}
-          </div>
+            </div>
+          )}
 
-          {/* Description or additional info */}
           <p style={{ color: "#555", lineHeight: "1.6" }}>
-            This is a {project.type} project from {project.year}.
+            {project.description}
             {project.client && ` Created for ${project.client}.`}
           </p>
         </motion.div>

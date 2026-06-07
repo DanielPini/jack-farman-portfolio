@@ -88,6 +88,44 @@
   background: #f5f5f5;
 }
 
+/* Language Switcher */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  pointer-events: auto;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #bbb;
+  cursor: pointer;
+  padding: 0.1rem 0.15rem;
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.lang-btn--active {
+  color: #111;
+  font-weight: 600;
+}
+
+.lang-btn:hover:not(.lang-btn--active) {
+  color: #555;
+}
+
+.lang-divider {
+  color: #ddd;
+  font-size: 0.55rem;
+  line-height: 1;
+  user-select: none;
+}
+
 /* Mobile Navigation */
 @media (max-width: 768px) {
   .home-navigation.mobile-nav {

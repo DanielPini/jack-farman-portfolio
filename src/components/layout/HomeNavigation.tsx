@@ -1,14 +1,9 @@
 import { motion } from "motion/react";
 import { Link, useLocation } from "react-router-dom";
 import { useViewport } from "../../hooks/useViewport";
+import { useLang } from "../../context/LanguageContext";
+import { translations } from "../../i18n/translations";
 import "./HomeNavigation.css";
-
-const NAV_LINKS = [
-  { to: "/film-practice", label: "Film Practice" },
-  { to: "/koinpost", label: "Le Koinpost" },
-  { to: "/consulting", label: "Consulting" },
-  { to: "/contact", label: "Contact" },
-] as const;
 
 function useActivePath() {
   const { pathname } = useLocation();
@@ -31,9 +26,34 @@ function NavPill({ to, label }: { to: string; label: string }) {
   );
 }
 
+function LangSwitcher() {
+  const { lang, setLang } = useLang();
+  return (
+    <div className="lang-switcher">
+      <button
+        className={`lang-btn${lang === "en" ? " lang-btn--active" : ""}`}
+        onClick={() => setLang("en")}
+        aria-label="Switch to English"
+      >
+        EN
+      </button>
+      <span className="lang-divider">|</span>
+      <button
+        className={`lang-btn${lang === "fr" ? " lang-btn--active" : ""}`}
+        onClick={() => setLang("fr")}
+        aria-label="Passer en français"
+      >
+        FR
+      </button>
+    </div>
+  );
+}
+
 export default function HomeNavigation() {
   const { width } = useViewport();
   const isMobile = width <= 768;
+  const { lang } = useLang();
+  const t = translations[lang].nav;
 
   if (isMobile) {
     return (
@@ -45,9 +65,11 @@ export default function HomeNavigation() {
         </motion.div>
 
         <div className="nav-buttons">
-          {NAV_LINKS.map(({ to, label }) => (
-            <NavPill key={to} to={to} label={label} />
-          ))}
+          <NavPill to="/film-practice" label={t.filmPractice} />
+          <NavPill to="/koinpost" label={t.leKoinpost} />
+          <NavPill to="/consulting" label={t.consulting} />
+          <NavPill to="/contact" label={t.contact} />
+          <LangSwitcher />
         </div>
       </nav>
     );
@@ -56,8 +78,8 @@ export default function HomeNavigation() {
   return (
     <nav className="home-navigation">
       <div className="nav-left">
-        <NavPill to="/film-practice" label="Film Practice" />
-        <NavPill to="/koinpost" label="Le Koinpost" />
+        <NavPill to="/film-practice" label={t.filmPractice} />
+        <NavPill to="/koinpost" label={t.leKoinpost} />
       </div>
 
       <motion.div className="nav-center" layoutId="jack-farman-text">
@@ -67,8 +89,9 @@ export default function HomeNavigation() {
       </motion.div>
 
       <div className="nav-right">
-        <NavPill to="/consulting" label="Consulting" />
-        <NavPill to="/contact" label="Contact" />
+        <NavPill to="/consulting" label={t.consulting} />
+        <NavPill to="/contact" label={t.contact} />
+        <LangSwitcher />
       </div>
     </nav>
   );

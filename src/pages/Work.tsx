@@ -6,18 +6,24 @@ import { projects } from "../data/projects";
 import type { Project } from "../data/projects";
 import PageWrapper from "../components/layout/PageWrapper";
 import { useViewport } from "../hooks/useViewport";
+import { useLang } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
 export default function Work() {
   const [active, setActive] = useState<Project | null>(projects[0] ?? null);
   const [hoverOffset, setHoverOffset] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const centerRef = useRef<HTMLDivElement | null>(null);
   const { width } = useViewport();
   const isDesktop = width > 768;
+  const { lang } = useLang();
+  const t = translations[lang].filmPractice;
 
   function handleHover(project: Project, titleCenterY: number) {
     setActive(project);
-    const containerTop = containerRef.current?.getBoundingClientRect().top ?? 0;
-    setHoverOffset(Math.max(0, titleCenterY - containerTop));
+    const refEl = centerRef.current ?? containerRef.current;
+    const refTop = refEl?.getBoundingClientRect().top ?? 0;
+    setHoverOffset(Math.max(0, titleCenterY - refTop));
   }
 
   return (
@@ -34,7 +40,7 @@ export default function Work() {
             <WorkList onHover={handleHover} />
           </div>
 
-          <div className="work-center">
+          <div className="work-center" ref={centerRef}>
             <div className="work-preview-wrapper" style={{ top: hoverOffset }}>
               <AnimatePresence mode="wait">
                 {active?.images?.length ? (
@@ -64,7 +70,7 @@ export default function Work() {
                   <p className="credits-meta">{active.category}</p>
                 )}
                 {active.director && (
-                  <p className="credits-meta">Directed by {active.director}</p>
+                  <p className="credits-meta">{t.directedBy} {active.director}</p>
                 )}
                 {active.description && (
                   <p className="credits-description">{active.description}</p>

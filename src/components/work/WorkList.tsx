@@ -4,12 +4,16 @@ import { motion } from "motion/react";
 import { projects } from "../../data/projects";
 import WorkItem from "./WorkItem";
 import type { Project } from "../../data/projects";
+import { useLang } from "../../context/LanguageContext";
+import { translations } from "../../i18n/translations";
 
 type Props = {
   onHover: (project: Project, titleCenterY: number) => void;
 };
 
 export default function WorkList({ onHover }: Props) {
+  const { lang } = useLang();
+  const t = translations[lang].filmPractice;
   const categoryGroups = useMemo(() => {
     const groups: Record<string, Project[]> = {};
     const orderedCategories: string[] = [];
@@ -58,7 +62,7 @@ export default function WorkList({ onHover }: Props) {
 
         return (
           <div key={group.category} className="work-category">
-            <h2 className="work-category-heading">{group.category}</h2>
+            <h2 className="work-category-heading">{t.categoryLabel}</h2>
             <div className="work-list">
               {seriesProjects.map((series) => {
                 const childProjects = group.projects.filter(
@@ -90,7 +94,7 @@ export default function WorkList({ onHover }: Props) {
                         {series.title}
                       </Link>
                       <div className="work-series-meta">
-                        {series.year} • {series.category || "Film"}
+                        {series.year} • {series.category || t.film}
                       </div>
                     </motion.div>
 
