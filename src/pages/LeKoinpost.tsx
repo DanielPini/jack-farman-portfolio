@@ -1,23 +1,12 @@
 import { motion } from "motion/react";
-import { useRef, useState } from "react";
 import PageWrapper from "../components/layout/PageWrapper";
 import KoinpostMap from "../components/koinpost/KoinpostMap";
-import PhotoGallery from "../components/koinpost/PhotoGallery";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../i18n/translations";
 
 export default function LeKoinpost() {
-  const [activeLocationId, setActiveLocationId] = useState<string | null>(null);
-  const galleryRef = useRef<HTMLDivElement>(null);
   const { lang } = useLang();
   const t = translations[lang].leKoinpost;
-
-  const handleLocationClick = (locationId: string) => {
-    setActiveLocationId(locationId);
-    setTimeout(() => {
-      galleryRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  };
 
   return (
     <PageWrapper>
@@ -50,10 +39,7 @@ export default function LeKoinpost() {
                   lekoinpost.com
                 </a>
               </p>
-              <KoinpostMap onLocationClick={handleLocationClick} />
-              <div ref={galleryRef}>
-                <PhotoGallery activeLocationId={activeLocationId} />
-              </div>
+              <KoinpostMap />
             </motion.div>
           </div>
         </motion.div>

@@ -12,6 +12,7 @@ interface Partner {
   hours: string;
   slug: string;
   coords: [number, number];
+  photo: string;
 }
 
 const partners: Partner[] = [
@@ -23,6 +24,7 @@ const partners: Partner[] = [
     hours: "Jeu 9h–17h · Sam (récompenses)",
     slug: "terre-terre",
     coords: [48.9130, 2.3715],
+    photo: "/images/Le_Koinpost_Partner_Terre_Terre.webp",
   },
   {
     id: "petits-pains",
@@ -32,6 +34,7 @@ const partners: Partner[] = [
     hours: "Dim 11h–12h30",
     slug: "petits-pains",
     coords: [48.8583, 2.4450],
+    photo: "/images/Le_Koinpost_Partner_Petits_Pains.webp",
   },
   {
     id: "charmes",
@@ -41,6 +44,7 @@ const partners: Partner[] = [
     hours: "9h–22h",
     slug: "charmes",
     coords: [48.8500, 2.4840],
+    photo: "/images/Le_Koinpost_Partner_Charmes.webp",
   },
   {
     id: "jean-mace",
@@ -50,17 +54,14 @@ const partners: Partner[] = [
     hours: "24h/24",
     slug: "composteur-jean-mace",
     coords: [48.8543, 2.4767],
+    photo: "/images/Le_Koinpost_Partner_Composteur_Jean_Mace.webp",
   },
 ];
 
-const MAP_CENTER: [number, number] = [48.878, 2.428];
-const MAP_ZOOM = 12;
+const MAP_CENTER: [number, number] = [48.882, 2.428];
+const MAP_ZOOM = 11;
 
-interface KoinpostMapProps {
-  onLocationClick: (locationId: string) => void;
-}
-
-export default function KoinpostMap({ onLocationClick }: KoinpostMapProps) {
+export default function KoinpostMap() {
   const { lang } = useLang();
   const t = translations[lang].leKoinpost;
 
@@ -74,7 +75,7 @@ export default function KoinpostMap({ onLocationClick }: KoinpostMapProps) {
       >
         <TileLayer
           attribution='&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.webp"
           subdomains="abcd"
         />
         {partners.map((partner) => (
@@ -95,22 +96,14 @@ export default function KoinpostMap({ onLocationClick }: KoinpostMapProps) {
                 {partner.address}<br />{partner.city}
               </div>
               <div className="popup-hours">{partner.hours}</div>
-              <div className="popup-actions">
-                <button
-                  className="popup-btn popup-btn--photos"
-                  onClick={() => onLocationClick(partner.id)}
-                >
-                  {t.viewPhotos}
-                </button>
-                <a
-                  href={`https://www.lekoinpost.com/jardins/${partner.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="popup-btn popup-btn--site"
-                >
-                  {t.viewOnSite} ↗
-                </a>
-              </div>
+              <a
+                href={`https://www.lekoinpost.com/jardins/${partner.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="popup-btn"
+              >
+                {t.viewOnSite} ↗
+              </a>
             </Popup>
           </CircleMarker>
         ))}
@@ -123,6 +116,11 @@ export default function KoinpostMap({ onLocationClick }: KoinpostMapProps) {
             <div key={partner.id} className="partner-row">
               <div className="partner-info">
                 <span className="partner-name">{partner.name}</span>
+                <img
+                  src={partner.photo}
+                  alt={partner.name}
+                  className="partner-photo"
+                />
                 <span className="partner-address">
                   {partner.address}, {partner.city}
                 </span>
@@ -130,22 +128,14 @@ export default function KoinpostMap({ onLocationClick }: KoinpostMapProps) {
                   {t.hoursLabel}: {partner.hours}
                 </span>
               </div>
-              <div className="partner-actions">
-                <button
-                  className="partner-btn partner-btn--photos"
-                  onClick={() => onLocationClick(partner.id)}
-                >
-                  {t.viewPhotos}
-                </button>
-                <a
-                  href={`https://www.lekoinpost.com/jardins/${partner.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="partner-btn partner-btn--site"
-                >
-                  {t.viewOnSite} ↗
-                </a>
-              </div>
+              <a
+                href={`https://www.lekoinpost.com/jardins/${partner.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="partner-btn"
+              >
+                {t.viewOnSite} ↗
+              </a>
             </div>
           ))}
         </div>
