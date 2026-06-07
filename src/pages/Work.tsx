@@ -1,11 +1,10 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import WorkList from "../components/work/WorkList";
-import WorkMedia from "../components/work/WorkMedia";
+import WorkPreview from "../components/work/WorkPreview";
 import { projects } from "../data/projects";
 import type { Project } from "../data/projects";
 import PageWrapper from "../components/layout/PageWrapper";
-import HomeNavigation from "../components/layout/HomeNavigation";
 import { useViewport } from "../hooks/useViewport";
 
 export default function Work() {
@@ -23,7 +22,6 @@ export default function Work() {
 
   return (
     <PageWrapper>
-      <HomeNavigation />
       <div className="page work-page">
         <motion.div
           className="work-container"
@@ -39,13 +37,13 @@ export default function Work() {
           <div className="work-center">
             <div className="work-preview-wrapper" style={{ top: hoverOffset }}>
               <AnimatePresence mode="wait">
-                {active && (
-                  <WorkMedia
+                {active?.images?.length ? (
+                  <WorkPreview
                     key={active.id}
-                    src={active.media}
-                    project={active}
+                    images={active.images}
+                    title={active.title}
                   />
-                )}
+                ) : null}
               </AnimatePresence>
             </div>
           </div>

@@ -1,11 +1,9 @@
 import { motion } from "motion/react";
 import PageWrapper from "../components/layout/PageWrapper";
-import HomeNavigation from "../components/layout/HomeNavigation";
 
 export default function Consulting() {
   return (
     <PageWrapper>
-      <HomeNavigation />
       <div className="page">
         <motion.div
           className="about"

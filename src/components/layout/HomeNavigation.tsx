@@ -1,21 +1,43 @@
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useViewport } from "../../hooks/useViewport";
 import "./HomeNavigation.css";
+
+const NAV_LINKS = [
+  { to: "/film-practice", label: "Film Practice" },
+  { to: "/koinpost", label: "Le Koinpost" },
+  { to: "/consulting", label: "Consulting" },
+  { to: "/contact", label: "Contact" },
+] as const;
+
+function useActivePath() {
+  const { pathname } = useLocation();
+  return (to: string) => pathname === to || pathname.startsWith(to + "/");
+}
+
+function NavPill({ to, label }: { to: string; label: string }) {
+  const isActive = useActivePath()(to);
+
+  if (isActive) {
+    return <span className="nav-link nav-link--active">{label}</span>;
+  }
+
+  return (
+    <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 0.975 }}>
+      <Link to={to} className="nav-link">
+        {label}
+      </Link>
+    </motion.div>
+  );
+}
 
 export default function HomeNavigation() {
   const { width } = useViewport();
   const isMobile = width <= 768;
 
-  const navProps = {
-    initial: { opacity: 0, y: -20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, delay: 0.5 },
-  };
-
   if (isMobile) {
     return (
-      <motion.nav className="home-navigation mobile-nav" {...navProps}>
+      <nav className="home-navigation mobile-nav">
         <motion.div className="nav-center" layoutId="jack-farman-text">
           <Link to="/" className="nav-center-link">
             Jack Farman
@@ -23,36 +45,19 @@ export default function HomeNavigation() {
         </motion.div>
 
         <div className="nav-buttons">
-          <Link to="/film-practice" className="nav-link">
-            Film Practice
-          </Link>
-          <Link to="/koinpost" className="nav-link">
-            Le Koinpost
-          </Link>
-          <Link to="/consulting" className="nav-link">
-            Consulting
-          </Link>
-          <Link to="/contact" className="nav-link">
-            Contact
-          </Link>
+          {NAV_LINKS.map(({ to, label }) => (
+            <NavPill key={to} to={to} label={label} />
+          ))}
         </div>
-      </motion.nav>
+      </nav>
     );
   }
 
   return (
-    <motion.nav className="home-navigation" {...navProps}>
+    <nav className="home-navigation">
       <div className="nav-left">
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Link to="/film-practice" className="nav-link">
-            Film Practice
-          </Link>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Link to="/koinpost" className="nav-link">
-            Le Koinpost
-          </Link>
-        </motion.div>
+        <NavPill to="/film-practice" label="Film Practice" />
+        <NavPill to="/koinpost" label="Le Koinpost" />
       </div>
 
       <motion.div className="nav-center" layoutId="jack-farman-text">
@@ -62,17 +67,9 @@ export default function HomeNavigation() {
       </motion.div>
 
       <div className="nav-right">
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Link to="/consulting" className="nav-link">
-            Consulting
-          </Link>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Link to="/contact" className="nav-link">
-            Contact
-          </Link>
-        </motion.div>
+        <NavPill to="/consulting" label="Consulting" />
+        <NavPill to="/contact" label="Contact" />
       </div>
-    </motion.nav>
+    </nav>
   );
 }

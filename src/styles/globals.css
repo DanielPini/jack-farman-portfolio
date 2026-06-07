@@ -414,54 +414,31 @@ p {
   color: #111;
 }
 
-.about-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin: 2rem 0 1.5rem;
-  border-bottom: 1px solid #ddd;
+/* Le Koinpost Page */
+.koinpost-section {
+  padding: 9rem 0 4rem;
+  text-align: center;
 }
 
-.about-tab {
-  border: none;
-  background: transparent;
-  color: #444;
-  padding: 0.5rem 0;
-  border-bottom: 2px solid transparent;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease;
+.koinpost-content {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.about-tab:hover {
-  color: #111;
+.koinpost-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
 }
 
-.about-tab.active {
-  color: #111;
-  border-bottom-color: #111;
-}
-
-.about-tab-content {
+.koinpost-body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
 @media (max-width: 768px) {
-  .about-tabs {
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-  }
-
-  .about-tab {
-    width: 100%;
-    text-align: left;
-    padding: 0.75rem 0;
+  .koinpost-section {
+    padding: 9.5rem 1rem 4rem;
   }
 }
 
@@ -739,7 +716,11 @@ button[type="submit"]:disabled {
 
   /* Mobile Work Page */
   .work-page {
-    padding: 6rem 1rem 4rem;
+    padding: 9.5rem 1rem 4rem;
+  }
+
+  .project-page {
+    padding: 9.5rem 1rem 4rem;
   }
 
   .work-container {

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { FormEvent, ChangeEvent } from "react";
 import PageWrapper from "../components/layout/PageWrapper";
-import HomeNavigation from "../components/layout/HomeNavigation";
 import { motion } from "motion/react";
 
 // TypeScript interface for form data
@@ -75,7 +74,6 @@ export default function Contact() {
 
   return (
     <PageWrapper>
-      <HomeNavigation />
       <section className="contact">
         <div className="contact-content">
           <motion.h3

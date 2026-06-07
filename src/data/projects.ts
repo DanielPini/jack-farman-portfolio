@@ -30,8 +30,8 @@ export type Project = {
   client?: string;
   director?: string;
   year: number;
-  media: string;
-  type: "video" | "image";
+  videos?: string[];
+  images?: string[];
   description?: string;
   category?: string;
   content?: ContentBlock[];
@@ -46,8 +46,22 @@ export const projects: Project[] = [
     title: "Espèces Pionnières",
     director: "Jack Farman",
     year: 2024,
-    media: "/videos/especes_pionnieres_1.mp4",
-    type: "video",
+    videos: [
+      "/videos/especes_pionnieres_1.mp4",
+      "/videos/especes_pionnieres_2.mp4",
+      "/videos/especes_pionnieres_3.mp4",
+    ],
+    images: [
+      "/images/Pioneer_Species_Part_I_-_Image_A.webp",
+      "/images/Pioneer_Species_Part_I_-_Image_B.webp",
+      "/images/Pioneer_Species_Part_I_-_Image_C.webp",
+      "/images/Pioneer_Species_Part_II_-_Image_A.webp",
+      "/images/Pioneer_Species_Part_II_-_Image_B.webp",
+      "/images/Pioneer_Species_Part_II_-_Image_C.webp",
+      "/images/Pioneer_Species_Part_II_-_Image_D.webp",
+      "/images/Pioneer_Species_Part_III_-_Image_A.webp",
+      "/images/Pioneer_Species_Part_III_-_Image_B.webp",
+    ],
     description:
       "A three-part film series exploring regeneration, care, and more-than-human relations across the outskirts of Paris and a sown forest in Vendée.",
     category: "Film Practice",
@@ -73,19 +87,19 @@ export const projects: Project[] = [
           },
           {
             type: "image",
-            src: "/images/Pioneer_Species(Part)_Old_Metro_Line.webp",
+            src: "/images/Pioneer_Species_Part_I_-_Image_A.webp",
             caption:
               "Top: old metro line in Paris and its outskirts, Trame Verte. Extract from Pioneer Species (Part I), Jack Farman, 2024.",
           },
           {
             type: "image",
-            src: "/images/Pioneer_Species(Part)_Inhabitant_Watering_Plants.webp",
+            src: "/images/Pioneer_Species_Part_I_-_Image_B.webp",
             caption:
               "Middle: An inhabitant watering the plants in Paris. Extract from Pioneer Species (Part I), Jack Farman, 2024.",
           },
           {
             type: "image",
-            src: "/images/Pioneer_Species(Part)_Humanoid_Sculpture.webp",
+            src: "/images/Pioneer_Species_Part_I_-_Image_C.webp",
             caption:
               "Bottom: Humanoid sculpture by Fabrice Hyber in Vendée. Extract from Pioneer Species (Part I), Jack Farman, 2024.",
           },
@@ -120,25 +134,25 @@ export const projects: Project[] = [
           },
           {
             type: "image",
-            src: "/images/Pioneer_Species(PartII)_Transporting_Compost.webp",
+            src: "/images/Pioneer_Species_Part_II_-_Image_A.webp",
             caption:
               "Top left: Transporting compost across the Zone Sensible farm, Aubervilliers. Extract from Pioneer Species (Part II), Jack Farman, 2025.",
           },
           {
             type: "image",
-            src: "/images/Pioneer_Species(PartII)_Bee_Hive.webp",
+            src: "/images/Pioneer_Species_Part_II_-_Image_B.webp",
             caption:
               "Top right: Bee hive at the Zone Sensible farm, Aubervilliers. Extract from Pioneer Species (Part II), Jack Farman, 2025.",
           },
           {
             type: "image",
-            src: "/images/Pioneer_Species(PartII)_Food_Waste_Disposal.webp",
+            src: "/images/Pioneer_Species_Part_II_-_Image_C.webp",
             caption:
               "Bottom left: Food waste deposit at the Zone Sensible farm, Aubervilliers. Extract from Pioneer Species (Part II), Jack Farman, 2025.",
           },
           {
             type: "image",
-            src: "/images/Pioneer_Species(PartII)_Compost_Maturing.webp",
+            src: "/images/Pioneer_Species_Part_II_-_Image_D.webp",
             caption:
               "Bottom right: Compost maturing at the Zone Sensible farm, Aubervilliers. Extract from Pioneer Species (Part II), Jack Farman, 2025.",
           },
@@ -161,13 +175,13 @@ export const projects: Project[] = [
           },
           {
             type: "image",
-            src: "/images/Pioneer_Species(PartIII)_Water_Distributioin.webp",
+            src: "/images/Pioneer_Species_Part_III_-_Image_A.webp",
             caption:
               "Top: Water distribution in the Doulaye river in Vendée. Extract from Pioneer Species (Part III), Jack Farman, 2026.",
           },
           {
             type: "image",
-            src: "/images/Pioneer_Species(PartIII)_Mapping_the_Doulaye.webp",
+            src: "/images/Pioneer_Species_Part_III_-_Image_B.webp",
             caption:
               "Bottom: Mapping the Doulaye river circulation into the forest with Fabrice Hyber. Extract from Pioneer Species (Part II), Jack Farman, 2025.",
           },
@@ -199,17 +213,21 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    slug: "especes-pionnieres-part-1",
-    title: "faire oeuvre, faire écosystème",
+    slug: "faire-oeuvre-faire-ecosysteme",
+    title: "Faire oeuvre, faire écosystème",
     director: "Jack Farman",
     year: 2024,
-    media: "/videos/especes_pionnieres_1.mp4",
-    type: "video",
+    videos: ["/videos/especes_pionnieres_1.mp4"],
+    images: [
+      "/images/Pioneer_Species_Part_I_-_Image_A.webp",
+      "/images/Pioneer_Species_Part_I_-_Image_B.webp",
+      "/images/Pioneer_Species_Part_I_-_Image_C.webp",
+    ],
     description:
       "Part 1 of the Espèces Pionnières trilogy, rooted in urban care and the future metro neighborhood of Nanterre.",
     category: "Film Practice",
     content: [
-      { type: "heading", text: "Espèces Pionnières Part 1" },
+      { type: "heading", text: "Faire oeuvre, faire écosystème" },
       {
         type: "paragraph",
         text: "A film about the emergence of care practices around a pioneer species tree in Nanterre, the future metro line, and the possibility of new relations between neighbors, plants, and soil.",
@@ -217,18 +235,23 @@ export const projects: Project[] = [
       {
         type: "video",
         src: "/videos/especes_pionnieres_1.mp4",
-        caption: "Espèces Pionnières Part 1, directed by Jack Farman.",
+        caption: "Faire oeuvre, faire écosystème, directed by Jack Farman.",
       },
     ],
   },
   {
     id: 3,
-    slug: "especes-pionnieres-part-2",
-    title: "exposome",
+    slug: "exposome",
+    title: "Exposome",
     director: "Jack Farman",
     year: 2025,
-    media: "/videos/especes_pionnieres_2.mp4",
-    type: "video",
+    videos: ["/videos/especes_pionnieres_2.mp4"],
+    images: [
+      "/images/Pioneer_Species_Part_II_-_Image_A.webp",
+      "/images/Pioneer_Species_Part_II_-_Image_B.webp",
+      "/images/Pioneer_Species_Part_II_-_Image_C.webp",
+      "/images/Pioneer_Species_Part_II_-_Image_D.webp",
+    ],
     description:
       "Part 2 of the trilogy, following composting, bees, and soil regeneration at Zone Sensible in Aubervilliers.",
     category: "Film Practice",
@@ -247,17 +270,20 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    slug: "especes-pionnieres-part-3",
-    title: "eaux et pays",
+    slug: "eaux-et-pays",
+    title: "Eaux et pays",
     director: "Jack Farman",
     year: 2026,
-    media: "/videos/especes_pionnieres_3.mp4",
-    type: "video",
+    videos: ["/videos/especes_pionnieres_3.mp4"],
+    images: [
+      "/images/Pioneer_Species_Part_III_-_Image_A.webp",
+      "/images/Pioneer_Species_Part_III_-_Image_B.webp",
+    ],
     description:
       "Part 3 of the trilogy, examining buried waterways, commemoration, and the visibility of water in Saint-Denis and Vendée.",
     category: "Film Practice",
     content: [
-      { type: "heading", text: "Espèces Pionnières Part 3" },
+      { type: "heading", text: "Eaux et pays" },
       {
         type: "paragraph",
         text: "A film about the buried river La Vieille Mer, collective mapping in Saint-Denis, and the broader questions of water, memory, and environmental care.",
@@ -265,7 +291,7 @@ export const projects: Project[] = [
       {
         type: "video",
         src: "/videos/especes_pionnieres_3.mp4",
-        caption: "Espèces Pionnières Part 3, directed by Jack Farman.",
+        caption: "Eaux et pays, directed by Jack Farman.",
       },
     ],
   },

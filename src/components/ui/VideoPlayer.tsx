@@ -18,7 +18,7 @@ export default function VideoPlayer({ projects }: VideoPlayerProps) {
   const videoRefs = useRef<HTMLVideoElement[]>([]);
 
   const videoProjects = projects
-    .filter((p) => p.type === "video" && p.slug !== "especes-pionnieres")
+    .filter((p) => p.videos?.length && p.slug !== "especes-pionnieres")
     .slice(0, 3);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function VideoPlayer({ projects }: VideoPlayerProps) {
                 playsInline
                 preload="metadata"
                 className="video-background-window"
-                src={encodeURI(project.media)}
+                src={encodeURI(project.videos![0])}
                 style={{ background: fallbackBackground }}
               />
               <div className="video-info-overlay">

@@ -1,34 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { projects } from "../data/projects";
 import Loader from "../components/ui/Loader";
 import HomeNavigation from "../components/layout/HomeNavigation";
 import VideoPlayer from "../components/ui/VideoPlayer";
 
+// Resets on every real page load / hard refresh; survives SPA back-navigation.
+let hasLoadedOnce = false;
+
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(() => {
-    // Check if loader has already been shown in this session
-    const hasSeenLoader = sessionStorage.getItem("hasSeenLoader");
-    return !hasSeenLoader; // Show loader only if not seen
-  });
+  const [isLoading, setIsLoading] = useState(!hasLoadedOnce);
 
-  // Show loading screen for 3 seconds on first load
-  useEffect(() => {
-    if (!isLoading) return; // Skip if loader already shown
-
-    const timer = setTimeout(() => {
-      sessionStorage.setItem("hasSeenLoader", "true");
-      setIsLoading(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [isLoading]);
+  function handleLoaderComplete() {
+    hasLoadedOnce = true;
+    setIsLoading(false);
+  }
 
   return (
     <div style={{ height: "100vh", overflow: "hidden" }}>
       <AnimatePresence>
         {isLoading ? (
-          <Loader key="loader" onComplete={() => setIsLoading(false)} />
+          <Loader key="loader" onComplete={handleLoaderComplete} />
         ) : (
           <motion.div
             key="home"
@@ -38,10 +30,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             style={{ height: "100vh" }}
           >
-            {/* Video background player */}
             <VideoPlayer projects={projects} />
-
-            {/* Navigation overlay */}
             <HomeNavigation />
           </motion.div>
         )}

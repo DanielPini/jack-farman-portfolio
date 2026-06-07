@@ -71,8 +71,21 @@
 
 .home-navigation .nav-link:hover {
   background: #f8f8f8;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.home-navigation .nav-link--active {
+  color: #aaa;
+  background: #f5f5f5;
+  border-color: #e8e8e8;
+  cursor: default;
+  pointer-events: none;
+}
+
+.home-navigation .nav-link--active:hover {
+  transform: none;
+  box-shadow: none;
+  background: #f5f5f5;
 }
 
 /* Mobile Navigation */
