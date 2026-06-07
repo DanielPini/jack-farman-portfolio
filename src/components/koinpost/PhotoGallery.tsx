@@ -15,32 +15,32 @@ interface PhotoGalleryProps {
 
 const photos: PhotoItem[] = [
   {
-    id: "fontenay-1",
-    locationId: "fontenay",
-    src: "https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=400&h=300&fit=crop",
-    alt: "Koinpost in Fontenay-sous-Bois",
-    caption: "Koinpost Installation - Fontenay-sous-Bois",
+    id: "terre-terre-1",
+    locationId: "terre-terre",
+    src: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop",
+    alt: "Terre Terre garden Aubervilliers",
+    caption: "Terre Terre — Aubervilliers",
   },
   {
-    id: "fontenay-2",
-    locationId: "fontenay",
-    src: "https://images.unsplash.com/photo-1542145990-1257f904a5ba?w=400&h=300&fit=crop",
-    alt: "Community composting in Fontenay",
-    caption: "Community Participation - Fontenay-sous-Bois",
+    id: "petits-pains-1",
+    locationId: "petits-pains",
+    src: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=400&h=300&fit=crop",
+    alt: "Compost Petits Pains Montreuil",
+    caption: "Compost Petits Pains — Montreuil",
   },
   {
-    id: "grand-paris-1",
-    locationId: "grand-paris",
-    src: "https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=400&h=300&fit=crop",
-    alt: "Koinpost in Grand Paris",
-    caption: "Koinpost Installation - Grand Paris Métropole",
+    id: "charmes-1",
+    locationId: "charmes",
+    src: "https://images.unsplash.com/photo-1542601906897-ecd5d1a3cdad?w=400&h=300&fit=crop",
+    alt: "Charmes garden Fontenay-sous-Bois",
+    caption: "Charmes — Fontenay-sous-Bois",
   },
   {
-    id: "grand-paris-2",
-    locationId: "grand-paris",
-    src: "https://images.unsplash.com/photo-1542145990-1257f904a5ba?w=400&h=300&fit=crop",
-    alt: "Environmental project in Grand Paris",
-    caption: "Ecosystem Development - Grand Paris Métropole",
+    id: "jean-mace-1",
+    locationId: "jean-mace",
+    src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    alt: "Composteur Jean Macé Fontenay-sous-Bois",
+    caption: "Composteur Jean Macé — Fontenay-sous-Bois",
   },
 ];
 
@@ -49,17 +49,10 @@ export default function PhotoGallery({ activeLocationId }: PhotoGalleryProps) {
     ? photos.filter((p) => p.locationId === activeLocationId)
     : photos;
 
+  if (!displayPhotos.length) return null;
+
   return (
     <div className="photo-gallery-container">
-      <motion.h3
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="gallery-title"
-      >
-        {activeLocationId ? "Location Gallery" : "All Locations"}
-      </motion.h3>
-
       <div className="photo-gallery">
         {displayPhotos.map((photo, index) => (
           <motion.div

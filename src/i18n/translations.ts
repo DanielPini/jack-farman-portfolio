@@ -43,6 +43,10 @@ export const translations = {
         "Born from the same questions that drive my film practice, Koinpost translates narrative into infrastructure, turning the gestures of care and repair into something people can participate in together.",
       ],
       learnMorePrefix: "Learn more at ",
+      partnersHeading: "Partners",
+      hoursLabel: "Hours",
+      viewPhotos: "View photos",
+      viewOnSite: "View on lekoinpost.com",
     },
   },
 
@@ -90,6 +94,10 @@ export const translations = {
         "Né des mêmes questions qui animent ma pratique cinématographique, Koinpost traduit le récit en infrastructure, transformant les gestes du soin et de la réparation en quelque chose auquel les gens peuvent participer ensemble.",
       ],
       learnMorePrefix: "En savoir plus sur ",
+      partnersHeading: "Partenaires",
+      hoursLabel: "Horaires",
+      viewPhotos: "Voir les photos",
+      viewOnSite: "Voir sur lekoinpost.com",
     },
   },
 } as const;
