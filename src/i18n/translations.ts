@@ -29,13 +29,8 @@ export const translations = {
     },
     contact: {
       heading: "Get In Touch",
-      body: "Have a project in mind? I'd love to hear about it. Send me a message and I'll get back to you as soon as possible.",
-      name: "Name",
-      email: "Email",
-      message: "Message",
-      send: "Send Message",
-      sending: "Sending…",
-      success: "✓ Thank you! Your message has been sent successfully.",
+      body: "Have a project in mind? I'd love to hear about it.",
+      contactLink: "Contact me here",
     },
     leKoinpost: {
       heading: "Le Koinpost",
@@ -80,13 +75,8 @@ export const translations = {
     },
     contact: {
       heading: "Prendre contact",
-      body: "Vous avez un projet en tête ? J'adorerais en entendre parler. Envoyez-moi un message et je vous répondrai dès que possible.",
-      name: "Nom",
-      email: "E-mail",
-      message: "Message",
-      send: "Envoyer le message",
-      sending: "Envoi en cours…",
-      success: "✓ Merci ! Votre message a bien été envoyé.",
+      body: "Vous avez un projet en tête ? J'adorerais en entendre parler.",
+      contactLink: "Me contacter ici",
     },
     leKoinpost: {
       heading: "Le Koinpost",

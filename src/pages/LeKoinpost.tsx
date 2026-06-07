@@ -32,7 +32,24 @@ export default function LeKoinpost() {
                 preload="metadata"
                 className="work-media-video"
               />
-              {t.paragraphs.map((text, index) => (
+              <p>{t.paragraphs[0]}</p>
+
+              <div className="koinpost-inline-images">
+                {[
+                  "/images/LEKOINPOST-CONTENT-NICKYRODING-2025-2.webp",
+                  "/images/LEKOINPOST-CONTENT-NICKYRODING-2025-7.webp",
+                  "/images/LEKOINPOST-CONTENT-NICKYRODING-2025-11.webp",
+                ].map((src) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt=""
+                    className="koinpost-inline-img"
+                  />
+                ))}
+              </div>
+
+              {t.paragraphs.slice(1).map((text, index) => (
                 <p key={index}>{text}</p>
               ))}
               <p>
