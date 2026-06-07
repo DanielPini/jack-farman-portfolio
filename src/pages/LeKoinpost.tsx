@@ -1,8 +1,30 @@
+import { useState } from "react";
 import { motion } from "motion/react";
 import PageWrapper from "../components/layout/PageWrapper";
-import { videoPosters } from "../data/videoPosters";
+import { videoPosters, videoProperPosters } from "../data/videoPosters";
+
+const KOINPOST_SRC = "/videos/LeKoinpost_FILM.webm";
+
+const NICKY_RODING_IMAGES = [
+  {
+    src: "/images/LEKOINPOST-CONTENT-NICKYRODING-2025-2.webp",
+    alt: "A full Le Koinpost paper compost bag on a windowsill. Photo by Nicky Roding, 2025.",
+  },
+  {
+    src: "/images/LEKOINPOST-CONTENT-NICKYRODING-2025-7.webp",
+    alt: "A Le Koinpost paper compost bag being emptied at a local compost site. Photo by Nicky Roding, 2025.",
+  },
+  {
+    src: "/images/LEKOINPOST-CONTENT-NICKYRODING-2025-11.webp",
+    alt: "A Le Koinpost paper compost bag displayed in an outstretched hand. Photo by Nicky Roding, 2025.",
+  },
+];
 
 export default function LeKoinpost() {
+  const [posterSrc, setPosterSrc] = useState<string | undefined>(
+    videoPosters[KOINPOST_SRC],
+  );
+
   return (
     <PageWrapper>
       <div className="page">
@@ -20,27 +42,25 @@ export default function LeKoinpost() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <video
-                src="/videos/LeKoinpost_FILM.webm"
+                src={KOINPOST_SRC}
                 autoPlay
                 muted
                 loop
                 controls
                 playsInline
                 preload="metadata"
-                poster={videoPosters["/videos/LeKoinpost_FILM.webm"]}
+                poster={posterSrc}
+                aria-label="Le Koinpost — short film by Jack Farman"
+                onCanPlay={() => setPosterSrc(videoProperPosters[KOINPOST_SRC])}
                 className="work-media-video"
               />
 
               <div className="koinpost-inline-images">
-                {[
-                  "/images/LEKOINPOST-CONTENT-NICKYRODING-2025-2.webp",
-                  "/images/LEKOINPOST-CONTENT-NICKYRODING-2025-7.webp",
-                  "/images/LEKOINPOST-CONTENT-NICKYRODING-2025-11.webp",
-                ].map((src) => (
+                {NICKY_RODING_IMAGES.map(({ src, alt }) => (
                   <img
                     key={src}
                     src={src}
-                    alt=""
+                    alt={alt}
                     className="koinpost-inline-img"
                   />
                 ))}

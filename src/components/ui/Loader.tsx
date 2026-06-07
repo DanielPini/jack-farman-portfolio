@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import "./Loader.css";
 import { useLang } from "../../context/LanguageContext";
@@ -6,36 +6,49 @@ import { translations } from "../../i18n/translations";
 
 interface LoaderProps {
   onComplete: () => void;
+  isReady: boolean; // true when all videos have enough data to play
 }
 
-export default function Loader({ onComplete }: LoaderProps) {
+const MIN_MS = 2500;  // always show at least this long
+const MAX_MS = 12000; // give up waiting after this long
+
+export default function Loader({ onComplete, isReady }: LoaderProps) {
   const [progress, setProgress] = useState(0);
+  const startTimeRef = useRef(0);
+  const completedRef = useRef(false);
+  const isReadyRef = useRef(isReady);
   const { lang } = useLang();
   const loadingText = translations[lang].loader.loading;
 
+  // Keep ref in sync so the interval closure always sees the latest value
   useEffect(() => {
-    // Simulate loading progress over 3 seconds
-    const duration = 3000; // 3 seconds
-    const interval = 50; // Update every 50ms
-    const steps = duration / interval;
-    const increment = 100 / steps;
+    isReadyRef.current = isReady;
+  }, [isReady]);
 
-    let currentProgress = 0;
+  useEffect(() => {
+    const TICK = 50;
+    startTimeRef.current = Date.now();
+
     const timer = setInterval(() => {
-      currentProgress += increment;
-      if (currentProgress >= 100) {
-        currentProgress = 100;
-        setProgress(100);
-        // Wait a bit before calling onComplete to show 100%
-        setTimeout(() => {
-          // Animate to nav position
-          setTimeout(onComplete, 300);
-        }, 300);
+      if (completedRef.current) return;
+
+      const elapsed = Date.now() - startTimeRef.current;
+
+      // Phase 1 (0 → 90 %): time-based over MIN_MS so the bar always moves
+      const phase1 = Math.min((elapsed / MIN_MS) * 90, 90);
+      setProgress(Math.round(phase1));
+
+      const minPassed = elapsed >= MIN_MS;
+      const maxHit   = elapsed >= MAX_MS;
+
+      if ((isReadyRef.current && minPassed) || maxHit) {
+        completedRef.current = true;
         clearInterval(timer);
-      } else {
-        setProgress(Math.round(currentProgress));
+        setProgress(100);
+        // Brief pause at 100 % before dismissing
+        setTimeout(onComplete, 600);
       }
-    }, interval);
+    }, TICK);
 
     return () => clearInterval(timer);
   }, [onComplete]);
@@ -47,7 +60,6 @@ export default function Loader({ onComplete }: LoaderProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Jack Farman brand name */}
       <motion.div
         className="loader-brand"
         initial={{ opacity: 0, y: 20 }}
@@ -68,9 +80,7 @@ export default function Loader({ onComplete }: LoaderProps) {
         {loadingText}
       </motion.div>
 
-      {/* Progress bar container */}
       <div className="loader-progress-container">
-        {/* Animated progress bar */}
         <motion.div
           className="loader-progress-bar"
           initial={{ width: 0 }}
@@ -79,7 +89,6 @@ export default function Loader({ onComplete }: LoaderProps) {
         />
       </div>
 
-      {/* Progress percentage */}
       <motion.div
         className="loader-percentage"
         initial={{ opacity: 0 }}

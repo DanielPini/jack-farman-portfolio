@@ -41,43 +41,6 @@ function renderParagraphText(text: string) {
   return parts;
 }
 
-function renderBlock(block: ContentBlock, index: number) {
-  switch (block.type) {
-    case "heading":
-      return (
-        <h2 key={index} className="project-block-heading">
-          {block.text}
-        </h2>
-      );
-    case "paragraph":
-      return (
-        <p key={index} className="project-block-paragraph">
-          {renderParagraphText(block.text)}
-        </p>
-      );
-    case "image":
-      return (
-        <div key={index} className="project-block-media">
-          <img src={block.src} alt={block.caption || "Project image"} />
-          {block.caption && (
-            <p className="project-block-caption">{block.caption}</p>
-          )}
-        </div>
-      );
-    case "video":
-      return (
-        <div key={index} className="project-block-media">
-          <WorkMedia src={block.src} />
-          {block.caption && (
-            <p className="project-block-caption">{block.caption}</p>
-          )}
-        </div>
-      );
-    default:
-      return null;
-  }
-}
-
 export default function ProjectPage() {
   const { slug } = useParams();
   const { lang } = useLang();
@@ -128,6 +91,43 @@ export default function ProjectPage() {
         : [],
     [project],
   );
+
+  function renderBlock(block: ContentBlock, index: number) {
+    switch (block.type) {
+      case "heading":
+        return (
+          <h2 key={index} className="project-block-heading">
+            {block.text}
+          </h2>
+        );
+      case "paragraph":
+        return (
+          <p key={index} className="project-block-paragraph">
+            {renderParagraphText(block.text)}
+          </p>
+        );
+      case "image":
+        return (
+          <div key={index} className="project-block-media">
+            <img src={block.src} alt={block.caption ?? project?.title ?? "Project image"} />
+            {block.caption && (
+              <p className="project-block-caption">{block.caption}</p>
+            )}
+          </div>
+        );
+      case "video":
+        return (
+          <div key={index} className="project-block-media">
+            <WorkMedia src={block.src} project={project} />
+            {block.caption && (
+              <p className="project-block-caption">{block.caption}</p>
+            )}
+          </div>
+        );
+      default:
+        return null;
+    }
+  }
 
   if (!project) {
     return (

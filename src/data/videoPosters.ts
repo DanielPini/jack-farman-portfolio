@@ -1,4 +1,4 @@
-// Tiny (~20px) JPEG stills used as poster images while videos load.
+// Tiny (~20px) JPEG stills — shown immediately while the video loads.
 // Keyed by the video src path as it appears in projects.ts / page templates.
 export const videoPosters: Record<string, string> = {
   "/videos/Part_I_(faire_oeuvre_faire_ecosysteme).webm":
@@ -9,4 +9,12 @@ export const videoPosters: Record<string, string> = {
     "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAALAAtAAD//gAQTGF2YzYyLjI4LjEwMQD/2wBDAAgEBAQEBAUFBQUFBQYGBgYGBgYGBgYGBgYHBwcICAgHBwcGBgcHCAgICAkJCQgICAgJCQoKCgwMCwsODg4RERT/xABkAAEBAQEBAAAAAAAAAAAAAAAEAgUDBwEBAQEAAAAAAAAAAAAAAAAAAgEDEAABBAEEAQUBAAAAAAAAAAABAhEDACEyBDESBRPRgXIiUREBAQEBAQAAAAAAAAAAAAAAAQACMSH/wAARCAALABQDASIAAhEAAxEA/9oADAMBAAIRAxEAPwDweBXVCccZr1+RCNvH6KDHIEkTHqzlyeQXAZh/Rc+PSj6+9Spal7X9F9QcgOwGM05PdWb1ibuVc0xWsuSBeVqbV8CzbM4X/9k=",
   "/videos/LeKoinpost_FILM.webm":
     "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAALAAtAAD//gAQTGF2YzYyLjI4LjEwMQD/2wBDAAgEBAQEBAUFBQUFBQYGBgYGBgYGBgYGBgYHBwcICAgHBwcGBgcHCAgICAkJCQgICAgJCQoKCgwMCwsODg4RERT/xABxAAEBAQEAAAAAAAAAAAAAAAAGAwIEAQADAQAAAAAAAAAAAAAAAAAAAgMEEAACAQMDAgMJAQAAAAAAAAABAgMEEQUAEhMGIWEHFBXTU6GUUSJCQTERAAEDBQEBAAAAAAAAAAAAAAExACERAhMSUcFh/8AAEQgACwAUAwEiAAIRAAMRAP/aAAwDAQACEQMRAD8AS0fUvTOKXLS5NOSKijZqfiYMszRxuZY3VtqiQSxtGpLcY/a2p0/mF5b52SmghrEL1exYoDCY23yAWiBYKC6sdpCE9/8AND+msFjMxQTeuilnFQxmmX1NTGksko/N3SKZFJbxGtZDofpamWJoceIzTHdARUVV4mJvdDz3Bv3vrHjtK1hKey77gWwv1GgyWDoaerZW2MGAdb2vtb+HxBuNc/srHfZPloXXKwntzVNgABepqD2F7dzJfUbP8Wo+on95oxHrXccf/9k=",
+};
+
+// Full-quality poster frames (~1280px wide) switched in once canPlay fires.
+export const videoProperPosters: Record<string, string> = {
+  "/videos/Part_I_(faire_oeuvre_faire_ecosysteme).webm": "/images/poster_part_i.webp",
+  "/videos/Part_II_(exposome).webm": "/images/poster_part_ii.webp",
+  "/videos/Part_III_(eaux_et_pays).webm": "/images/poster_part_iii.webp",
+  "/videos/LeKoinpost_FILM.webm": "/images/poster_koinpost.webp",
 };

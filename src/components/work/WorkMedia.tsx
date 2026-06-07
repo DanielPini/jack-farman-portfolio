@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { motion } from "motion/react";
 import type { Project } from "../../data/projects";
-import { videoPosters } from "../../data/videoPosters";
+import { videoPosters, videoProperPosters } from "../../data/videoPosters";
 
 type Props = {
   src: string;
@@ -11,6 +12,9 @@ const isVideo = (src: string) =>
   src.endsWith(".mp4") || src.endsWith(".webm") || src.endsWith(".mov");
 
 export default function WorkMedia({ src, project }: Props) {
+  const [posterSrc, setPosterSrc] = useState<string | undefined>(
+    videoPosters[src] ?? undefined,
+  );
   const mediaSrc = encodeURI(src);
 
   return (
@@ -27,13 +31,18 @@ export default function WorkMedia({ src, project }: Props) {
           controls
           playsInline
           preload="metadata"
-          poster={videoPosters[src] ?? undefined}
+          poster={posterSrc}
+          aria-label={project?.title ?? "Film"}
+          onCanPlay={() => {
+            const proper = videoProperPosters[src];
+            if (proper) setPosterSrc(proper);
+          }}
           className="work-media-video"
         />
       ) : (
         <img
           src={src}
-          alt={project?.title || "Project media"}
+          alt={project?.title ?? "Project image"}
           className="work-media-image"
         />
       )}

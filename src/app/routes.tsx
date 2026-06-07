@@ -1,20 +1,11 @@
-import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Work from "../pages/Work";
 import ProjectPage from "../pages/ProjectPage";
 import WorkRedirect from "../pages/WorkRedirect";
 import Contact from "../pages/Contact";
 import LeKoinpost from "../pages/LeKoinpost";
-import HomeNavigation from "../components/layout/HomeNavigation";
-
-function Layout() {
-  return (
-    <>
-      <HomeNavigation />
-      <Outlet />
-    </>
-  );
-}
+import Layout from "./Layout";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },

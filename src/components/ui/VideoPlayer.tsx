@@ -53,6 +53,7 @@ export default function VideoPlayer({ projects }: VideoPlayerProps) {
               className="video-background-window"
               src={encodeURI(project.videos![0])}
               poster={videoPosters[project.videos![0]] ?? undefined}
+              aria-label={project.title}
             />
             <div className="video-info-overlay">
               <div className="video-title">{project.title}</div>
