@@ -27,9 +27,7 @@ export default function LeKoinpost() {
               <h3>{t.heading}</h3>
               <video
                 src="/videos/LeKoinpost_FILM.webm"
-                autoPlay
-                muted
-                loop
+                controls
                 playsInline
                 preload="metadata"
                 className="work-media-video"
