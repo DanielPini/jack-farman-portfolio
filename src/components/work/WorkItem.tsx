@@ -1,16 +1,11 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import type { Project } from "../../data/projects";
-import { useLang } from "../../context/LanguageContext";
-import { translations } from "../../i18n/translations";
-
 type Props = {
   project: Project;
 };
 
 export default function WorkItem({ project }: Props) {
-  const { lang } = useLang();
-  const t = translations[lang].filmPractice;
 
   const href = `/film-practice/${project.slug ?? project.id}`;
 

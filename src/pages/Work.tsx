@@ -68,7 +68,9 @@ export default function Work() {
                 {active.year && <p className="credits-meta">{active.year}</p>}
                 {active.screenings && active.screenings.length > 0 ? (
                   <>
-                    <span className="credits-screenings-label">{t.screenings}</span>
+                    <span className="credits-screenings-label">
+                      {t.screenings}
+                    </span>
                     <ul className="credits-screenings">
                       {active.screenings.map((s, i) => (
                         <li key={i}>{s}</li>
