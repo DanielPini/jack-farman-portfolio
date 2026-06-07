@@ -25,6 +25,15 @@ export default function LeKoinpost() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <h3>{t.heading}</h3>
+              <video
+                src="/videos/LeKoinpost_FILM.webm"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="work-media-video"
+              />
               {t.paragraphs.map((text, index) => (
                 <p key={index}>{text}</p>
               ))}
