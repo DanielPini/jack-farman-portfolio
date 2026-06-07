@@ -282,6 +282,10 @@ p {
   padding-top: 0;
 }
 
+.work-card-image {
+  display: none;
+}
+
 .work-credits {
   display: flex;
   flex-direction: column;
@@ -742,25 +746,26 @@ p {
   }
 
   .work-container {
-    grid-template-columns: 1fr 200px;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    align-items: flex-start;
   }
 
   .work-left {
     padding-top: 0;
   }
 
-  .work-center {
-    min-height: 200px;
-    width: 200px;
-    position: sticky;
-    top: 100px;
+  .work-center,
+  .work-right {
+    display: none;
   }
 
-  .work-right {
-    padding-top: 0;
-    display: none;
+  .work-card-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
   }
 }
 

@@ -94,7 +94,7 @@ export default function WorkList({ onHover }: Props) {
                         {series.title}
                       </Link>
                       <div className="work-series-meta">
-                        {series.year} • {series.category || t.film}
+                        {series.year}
                       </div>
                     </motion.div>
 
