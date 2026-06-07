@@ -13,6 +13,7 @@ export const translations = {
       categoryLabel: "Film Practice",
       film: "Film",
       directedBy: "Directed by",
+      screenings: "Screenings",
       backToList: "Back to Film Practice",
     },
     project: {
@@ -63,6 +64,7 @@ export const translations = {
       categoryLabel: "Pratique Cinématographique",
       film: "Film",
       directedBy: "Réalisé par",
+      screenings: "Projections",
       backToList: "Retour à la pratique cinématographique",
     },
     project: {

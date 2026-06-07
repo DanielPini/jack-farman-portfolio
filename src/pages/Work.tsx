@@ -66,15 +66,18 @@ export default function Work() {
               <div className="work-credits">
                 <h3 className="credits-title">{active.title}</h3>
                 {active.year && <p className="credits-meta">{active.year}</p>}
-                {active.category && (
-                  <p className="credits-meta">{active.category}</p>
-                )}
-                {active.director && (
-                  <p className="credits-meta">{t.directedBy} {active.director}</p>
-                )}
-                {active.description && (
+                {active.screenings && active.screenings.length > 0 ? (
+                  <>
+                    <span className="credits-screenings-label">{t.screenings}</span>
+                    <ul className="credits-screenings">
+                      {active.screenings.map((s, i) => (
+                        <li key={i}>{s}</li>
+                      ))}
+                    </ul>
+                  </>
+                ) : active.description ? (
                   <p className="credits-description">{active.description}</p>
-                )}
+                ) : null}
               </div>
             </motion.div>
           )}

@@ -41,6 +41,7 @@ export type Project = {
   sectionsFr?: { title: string; content: ContentBlock[] }[];
   footnotes?: Footnote[];
   footnotesFr?: Footnote[];
+  screenings?: string[];
 };
 
 export const projects: Project[] = [
@@ -239,17 +240,20 @@ export const projects: Project[] = [
           {
             type: "image",
             src: "/images/Pioneer_Species_Part_I_-_Image_A.webp",
-            caption: "En haut : ancienne ligne de métro à Paris et sa banlieue, Trame Verte. Extrait d'Espèces Pionnières (Partie I), Jack Farman, 2024.",
+            caption:
+              "En haut : ancienne ligne de métro à Paris et sa banlieue, Trame Verte. Extrait d'Espèces Pionnières (Partie I), Jack Farman, 2024.",
           },
           {
             type: "image",
             src: "/images/Pioneer_Species_Part_I_-_Image_B.webp",
-            caption: "Au milieu : un habitant arrosant les plantes à Paris. Extrait d'Espèces Pionnières (Partie I), Jack Farman, 2024.",
+            caption:
+              "Au milieu : un habitant arrosant les plantes à Paris. Extrait d'Espèces Pionnières (Partie I), Jack Farman, 2024.",
           },
           {
             type: "image",
             src: "/images/Pioneer_Species_Part_I_-_Image_C.webp",
-            caption: "En bas : sculpture humanoïde de Fabrice Hyber en Vendée. Extrait d'Espèces Pionnières (Partie I), Jack Farman, 2024.",
+            caption:
+              "En bas : sculpture humanoïde de Fabrice Hyber en Vendée. Extrait d'Espèces Pionnières (Partie I), Jack Farman, 2024.",
           },
           {
             type: "paragraph",
@@ -283,22 +287,26 @@ export const projects: Project[] = [
           {
             type: "image",
             src: "/images/Pioneer_Species_Part_II_-_Image_A.webp",
-            caption: "En haut à gauche : transport de compost à la ferme Zone Sensible, Aubervilliers. Extrait d'Espèces Pionnières (Partie II), Jack Farman, 2025.",
+            caption:
+              "En haut à gauche : transport de compost à la ferme Zone Sensible, Aubervilliers. Extrait d'Espèces Pionnières (Partie II), Jack Farman, 2025.",
           },
           {
             type: "image",
             src: "/images/Pioneer_Species_Part_II_-_Image_B.webp",
-            caption: "En haut à droite : ruche à la ferme Zone Sensible, Aubervilliers. Extrait d'Espèces Pionnières (Partie II), Jack Farman, 2025.",
+            caption:
+              "En haut à droite : ruche à la ferme Zone Sensible, Aubervilliers. Extrait d'Espèces Pionnières (Partie II), Jack Farman, 2025.",
           },
           {
             type: "image",
             src: "/images/Pioneer_Species_Part_II_-_Image_C.webp",
-            caption: "En bas à gauche : dépôt de déchets alimentaires à la ferme Zone Sensible, Aubervilliers. Extrait d'Espèces Pionnières (Partie II), Jack Farman, 2025.",
+            caption:
+              "En bas à gauche : dépôt de déchets alimentaires à la ferme Zone Sensible, Aubervilliers. Extrait d'Espèces Pionnières (Partie II), Jack Farman, 2025.",
           },
           {
             type: "image",
             src: "/images/Pioneer_Species_Part_II_-_Image_D.webp",
-            caption: "En bas à droite : compost en maturation à la ferme Zone Sensible, Aubervilliers. Extrait d'Espèces Pionnières (Partie II), Jack Farman, 2025.",
+            caption:
+              "En bas à droite : compost en maturation à la ferme Zone Sensible, Aubervilliers. Extrait d'Espèces Pionnières (Partie II), Jack Farman, 2025.",
           },
         ],
       },
@@ -320,12 +328,14 @@ export const projects: Project[] = [
           {
             type: "image",
             src: "/images/Pioneer_Species_Part_III_-_Image_A.webp",
-            caption: "En haut : distribution d'eau dans la rivière Doulaye en Vendée. Extrait d'Espèces Pionnières (Partie III), Jack Farman, 2026.",
+            caption:
+              "En haut : distribution d'eau dans la rivière Doulaye en Vendée. Extrait d'Espèces Pionnières (Partie III), Jack Farman, 2026.",
           },
           {
             type: "image",
             src: "/images/Pioneer_Species_Part_III_-_Image_B.webp",
-            caption: "En bas : cartographie de la circulation de la Doulaye dans la forêt avec Fabrice Hyber. Extrait d'Espèces Pionnières (Partie II), Jack Farman, 2025.",
+            caption:
+              "En bas : cartographie de la circulation de la Doulaye dans la forêt avec Fabrice Hyber. Extrait d'Espèces Pionnières (Partie II), Jack Farman, 2025.",
           },
         ],
       },
@@ -369,6 +379,10 @@ export const projects: Project[] = [
       "Part 1 of the Espèces Pionnières trilogy, rooted in urban care and the future metro neighborhood of Nanterre.",
     descriptionFr:
       "Partie 1 de la trilogie Espèces Pionnières, enracinée dans le soin urbain et le futur quartier de la ligne de métro de Nanterre.",
+    screenings: [
+      "Centre Pompidou — Hors-Pistes/Hors Champs 2026, Festival Itinérant à la Vallée en Vendée",
+      "La Villette — Le Consulat de la Terre, cycle de conférences avec TVK, 2026",
+    ],
     category: "Film Practice",
     content: [
       { type: "heading", text: "Faire oeuvre, faire écosystème" },
@@ -412,6 +426,10 @@ export const projects: Project[] = [
       "Part 2 of the trilogy, following composting, bees, and soil regeneration at Zone Sensible in Aubervilliers.",
     descriptionFr:
       "Partie 2 de la trilogie, suivant le compostage, les abeilles et la régénération du sol à Zone Sensible à Aubervilliers.",
+    screenings: [
+      "Centre Pompidou — Hors-Pistes/Hors Champs 2026, Festival Itinérant à la Vallée en Vendée",
+      "La Villette — Le Consulat de la Terre, cycle de conférences avec TVK, 2026",
+    ],
     category: "Film Practice",
     content: [
       { type: "heading", text: "Espèces Pionnières Part 2" },
@@ -453,6 +471,10 @@ export const projects: Project[] = [
       "Part 3 of the trilogy, examining buried waterways, commemoration, and the visibility of water in Saint-Denis and Vendée.",
     descriptionFr:
       "Partie 3 de la trilogie, examinant les cours d'eau enfouis, la commémoration et la visibilité de l'eau à Saint-Denis et en Vendée.",
+    screenings: [
+      "Centre Pompidou — Hors-Pistes/Hors Champs 2026, Festival Itinérant à la Vallée en Vendée",
+      "La Villette — Le Consulat de la Terre, cycle de conférences avec TVK, 2026",
+    ],
     category: "Film Practice",
     content: [
       { type: "heading", text: "Eaux et pays" },

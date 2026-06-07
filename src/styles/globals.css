@@ -298,6 +298,34 @@ p {
   font-style: italic;
 }
 
+.credits-screenings-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #999;
+  margin: 1rem 0 0.4rem;
+}
+
+.credits-screenings {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.credits-screenings li {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.5;
+  padding: 0.25rem 0;
+  border-top: 1px solid #e8e8e8;
+}
+
+.credits-screenings li:last-child {
+  border-bottom: 1px solid #e8e8e8;
+}
+
 .project-page {
   min-height: 100vh;
   padding: 6rem 2rem 4rem;
