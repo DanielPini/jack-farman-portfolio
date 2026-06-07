@@ -52,9 +52,9 @@ export const projects: Project[] = [
     director: "Jack Farman",
     year: 2024,
     videos: [
-      "/videos/especes_pionnieres_1.mp4",
-      "/videos/especes_pionnieres_2.mp4",
-      "/videos/especes_pionnieres_3.mp4",
+      "/videos/Part_I_(faire_oeuvre_faire_ecosysteme).webm",
+      "/videos/Part_II_(exposome).webm",
+      "/videos/Part_III_(eaux_et_pays).webm",
     ],
     images: [
       "/images/Pioneer_Species_Part_I_-_Image_A.webp",
@@ -369,7 +369,7 @@ export const projects: Project[] = [
     title: "Faire oeuvre, faire écosystème",
     director: "Jack Farman",
     year: 2024,
-    videos: ["/videos/especes_pionnieres_1.mp4"],
+    videos: ["/videos/Part_I_(faire_oeuvre_faire_ecosysteme).webm"],
     images: [
       "/images/Pioneer_Species_Part_I_-_Image_A.webp",
       "/images/Pioneer_Species_Part_I_-_Image_B.webp",
@@ -392,7 +392,7 @@ export const projects: Project[] = [
       },
       {
         type: "video",
-        src: "/videos/especes_pionnieres_1.mp4",
+        src: "/videos/Part_I_(faire_oeuvre_faire_ecosysteme).webm",
         caption: "Faire oeuvre, faire écosystème, directed by Jack Farman.",
       },
     ],
@@ -404,7 +404,7 @@ export const projects: Project[] = [
       },
       {
         type: "video",
-        src: "/videos/especes_pionnieres_1.mp4",
+        src: "/videos/Part_I_(faire_oeuvre_faire_ecosysteme).webm",
         caption: "Faire oeuvre, faire écosystème, réalisé par Jack Farman.",
       },
     ],
@@ -415,7 +415,7 @@ export const projects: Project[] = [
     title: "Exposome",
     director: "Jack Farman",
     year: 2025,
-    videos: ["/videos/especes_pionnieres_2.mp4"],
+    videos: ["/videos/Part_II_(exposome).webm"],
     images: [
       "/images/Pioneer_Species_Part_II_-_Image_A.webp",
       "/images/Pioneer_Species_Part_II_-_Image_B.webp",
@@ -439,7 +439,7 @@ export const projects: Project[] = [
       },
       {
         type: "video",
-        src: "/videos/especes_pionnieres_2.mp4",
+        src: "/videos/Part_II_(exposome).webm",
         caption: "Espèces Pionnières Part 2, directed by Jack Farman.",
       },
     ],
@@ -451,7 +451,7 @@ export const projects: Project[] = [
       },
       {
         type: "video",
-        src: "/videos/especes_pionnieres_2.mp4",
+        src: "/videos/Part_II_(exposome).webm",
         caption: "Espèces Pionnières Partie 2, réalisé par Jack Farman.",
       },
     ],
@@ -462,7 +462,7 @@ export const projects: Project[] = [
     title: "Eaux et pays",
     director: "Jack Farman",
     year: 2026,
-    videos: ["/videos/especes_pionnieres_3.mp4"],
+    videos: ["/videos/Part_III_(eaux_et_pays).webm"],
     images: [
       "/images/Pioneer_Species_Part_III_-_Image_A.webp",
       "/images/Pioneer_Species_Part_III_-_Image_B.webp",
@@ -484,7 +484,7 @@ export const projects: Project[] = [
       },
       {
         type: "video",
-        src: "/videos/especes_pionnieres_3.mp4",
+        src: "/videos/Part_III_(eaux_et_pays).webm",
         caption: "Eaux et pays, directed by Jack Farman.",
       },
     ],
@@ -496,7 +496,7 @@ export const projects: Project[] = [
       },
       {
         type: "video",
-        src: "/videos/especes_pionnieres_3.mp4",
+        src: "/videos/Part_III_(eaux_et_pays).webm",
         caption: "Eaux et pays, réalisé par Jack Farman.",
       },
     ],

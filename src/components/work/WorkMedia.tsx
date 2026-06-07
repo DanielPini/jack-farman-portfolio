@@ -6,6 +6,9 @@ type Props = {
   project?: Project;
 };
 
+const isVideo = (src: string) =>
+  src.endsWith(".mp4") || src.endsWith(".webm") || src.endsWith(".mov");
+
 export default function WorkMedia({ src, project }: Props) {
   const mediaSrc = encodeURI(src);
 
@@ -17,12 +20,10 @@ export default function WorkMedia({ src, project }: Props) {
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.3 }}
     >
-      {src.endsWith(".mp4") || src.endsWith(".webm") || src.endsWith(".mov") ? (
+      {isVideo(src) ? (
         <video
           src={mediaSrc}
-          autoPlay
-          muted
-          loop
+          controls
           playsInline
           preload="metadata"
           className="work-media-video"
