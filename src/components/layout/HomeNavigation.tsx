@@ -67,7 +67,6 @@ export default function HomeNavigation() {
         <div className="nav-buttons">
           <NavPill to="/film-practice" label={t.filmPractice} />
           <NavPill to="/koinpost" label={t.leKoinpost} />
-          <NavPill to="/consulting" label={t.consulting} />
           <NavPill to="/contact" label={t.contact} />
           <LangSwitcher />
         </div>
@@ -89,7 +88,6 @@ export default function HomeNavigation() {
       </motion.div>
 
       <div className="nav-right">
-        <NavPill to="/consulting" label={t.consulting} />
         <NavPill to="/contact" label={t.contact} />
         <LangSwitcher />
       </div>

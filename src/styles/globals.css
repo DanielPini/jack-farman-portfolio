@@ -53,6 +53,7 @@ h3 {
 
 p {
   font-size: 1rem;
+  text-align: justify;
 }
 
 /* Layout */
@@ -186,7 +187,7 @@ p {
 }
 
 .work-series-meta {
-  color: rgba(0, 0, 0, 0.65);
+  color: #000;
   font-size: 0.93rem;
 }
 
@@ -238,7 +239,7 @@ p {
 
 .work-list-item-meta {
   font-size: 0.9rem;
-  color: #666;
+  color: #000;
 }
 
 .work-center {
@@ -274,7 +275,6 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 8px;
 }
 
 .work-right {
@@ -300,17 +300,16 @@ p {
 
 .credits-meta {
   font-size: 0.95rem;
-  color: #666;
+  color: #000;
   margin: 0;
   line-height: 1.4;
 }
 
 .credits-description {
   font-size: 0.95rem;
-  color: #555;
+  color: #000;
   margin: 1rem 0 0 0;
   line-height: 1.6;
-  font-style: italic;
 }
 
 .credits-screenings-label {
@@ -319,7 +318,7 @@ p {
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #999;
+  color: #000;
   margin: 1rem 0 0.4rem;
 }
 
@@ -331,7 +330,7 @@ p {
 
 .credits-screenings li {
   font-size: 0.85rem;
-  color: #555;
+  color: #000;
   line-height: 1.5;
   padding: 0.25rem 0;
   border-top: 1px solid #e8e8e8;
@@ -366,18 +365,18 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-size: 0.8rem;
-  color: #888;
+  color: #000;
 }
 
 .project-meta {
   margin: 0;
-  color: #666;
+  color: #000;
   line-height: 1.5;
 }
 
 .project-description {
   margin: 0;
-  color: #444;
+  color: #000;
   line-height: 1.8;
   max-width: 60ch;
 }
@@ -385,7 +384,6 @@ p {
 .project-intro-media {
   min-height: 420px;
   overflow: hidden;
-  border-radius: 8px;
   background: #000;
 }
 
@@ -402,7 +400,7 @@ p {
 
 .project-block-paragraph {
   margin: 0;
-  color: #444;
+  color: #000;
   line-height: 1.8;
   max-width: 70ch;
 }
@@ -416,13 +414,12 @@ p {
 .project-block-media img,
 .project-block-media video {
   width: 100%;
-  border-radius: 8px;
   object-fit: cover;
 }
 
 .project-block-caption {
   margin: 0;
-  color: #666;
+  color: #000;
   font-size: 0.95rem;
 }
 
@@ -460,7 +457,7 @@ p {
 /* Le Koinpost Page */
 .koinpost-section {
   padding: 9rem 0 4rem;
-  text-align: center;
+  text-align: left;
 }
 
 .koinpost-content {
@@ -678,7 +675,7 @@ p {
   text-align: center;
   padding: 2rem;
   font-size: 0.7rem;
-  color: #bbb;
+  color: #000;
   letter-spacing: 0.04em;
 }
 
@@ -706,6 +703,15 @@ p {
 
 .site-footer-link:hover {
   color: #555;
+}
+
+@media (max-width: 1024px) {
+  .site-footer--home {
+    position: static;
+    background: transparent;
+    padding: 1.5rem 1rem;
+    pointer-events: auto;
+  }
 }
 
 /* Responsive */
@@ -764,7 +770,6 @@ p {
     width: 100%;
     aspect-ratio: 3 / 2;
     object-fit: cover;
-    border-radius: 8px;
     margin-bottom: 0.75rem;
   }
 }
@@ -810,7 +815,6 @@ p {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 8px;
   display: block;
 }
 
@@ -827,7 +831,6 @@ p {
 .koinpost-pdf {
   width: 100%;
   height: auto;
-  border-radius: 8px;
   display: block;
 }
 

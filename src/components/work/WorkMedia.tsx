@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import type { Project } from "../../data/projects";
+import { videoPosters } from "../../data/videoPosters";
 
 type Props = {
   src: string;
@@ -26,6 +27,7 @@ export default function WorkMedia({ src, project }: Props) {
           controls
           playsInline
           preload="metadata"
+          poster={videoPosters[src] ?? undefined}
           className="work-media-video"
         />
       ) : (

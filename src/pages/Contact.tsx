@@ -25,19 +25,10 @@ export default function Contact() {
             {t.heading}
           </motion.h3>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            style={{ marginBottom: "2rem", textAlign: "center" }}
-          >
-            {t.body}
-          </motion.p>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             style={{ textAlign: "center" }}
           >
             <a

@@ -1,13 +1,8 @@
 import { motion } from "motion/react";
 import PageWrapper from "../components/layout/PageWrapper";
-import KoinpostMap from "../components/koinpost/KoinpostMap";
-import { useLang } from "../context/LanguageContext";
-import { translations } from "../i18n/translations";
+import { videoPosters } from "../data/videoPosters";
 
 export default function LeKoinpost() {
-  const { lang } = useLang();
-  const t = translations[lang].leKoinpost;
-
   return (
     <PageWrapper>
       <div className="page">
@@ -24,15 +19,17 @@ export default function LeKoinpost() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h3>{t.heading}</h3>
               <video
                 src="/videos/LeKoinpost_FILM.webm"
+                autoPlay
+                muted
+                loop
                 controls
                 playsInline
                 preload="metadata"
+                poster={videoPosters["/videos/LeKoinpost_FILM.webm"]}
                 className="work-media-video"
               />
-              <p>{t.paragraphs[0]}</p>
 
               <div className="koinpost-inline-images">
                 {[
@@ -49,29 +46,14 @@ export default function LeKoinpost() {
                 ))}
               </div>
 
-              {t.paragraphs.slice(1).map((text, index) => (
-                <p key={index}>{text}</p>
-              ))}
-              <p>
-                {t.learnMorePrefix}
-                <a
-                  href="https://lekoinpost.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="koinpost-link"
-                >
-                  lekoinpost.com
-                </a>
-              </p>
-              <KoinpostMap />
-
-              <div className="koinpost-pdf-wrapper">
-                <img
-                  src="/pancarte_koinpost.webp"
-                  alt="Pancarte Koinpost"
-                  className="koinpost-pdf"
-                />
-              </div>
+              <a
+                href="https://lekoinpost.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="koinpost-link"
+              >
+                lekoinpost.com
+              </a>
             </motion.div>
           </div>
         </motion.div>
