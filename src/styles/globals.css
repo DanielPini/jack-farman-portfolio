@@ -16,6 +16,51 @@
   color: var(--default-colour);
 }
 
+/* ===== Accessibility ===== */
+
+/* Visually hidden — readable by screen readers, invisible to sighted users */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link — hidden until focused via keyboard */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background: #000;
+  color: #fff !important;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Focus indicators — keyboard-only, never shown on mouse click */
+:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 html {
   background-color: #ffffff;
 }
@@ -443,11 +488,13 @@ p {
     border-color 0.2s ease;
 }
 
-.project-tab:hover {
+.project-tab:hover,
+.project-tab:focus-visible {
   color: #000;
 }
 
-.project-tab.active {
+.project-tab.active,
+.project-tab[aria-selected="true"] {
   border-color: #111;
   color: #111;
 }

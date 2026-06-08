@@ -46,6 +46,7 @@ export default function Home() {
             preload="auto"
             muted
             playsInline
+            aria-hidden="true"
             style={{ display: "none" }}
             onCanPlay={() => handleCanPlay(src)}
           />
@@ -67,7 +68,9 @@ export default function Home() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <VideoPlayer projects={projects} />
+            <main id="main-content" aria-label="Portfolio films">
+              <VideoPlayer projects={projects} />
+            </main>
             <HomeNavigation />
             <footer className="site-footer site-footer--home">
               Website by{" "}
@@ -76,6 +79,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="site-footer-link"
+                aria-label="Daniel Pini — website designer (opens in new tab)"
               >
                 Daniel Pini
               </a>{" "}

@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "motion/react";
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useRef, useState, type ReactNode } from "react";
 import PageWrapper from "../components/layout/PageWrapper";
 import WorkMedia from "../components/work/WorkMedia";
 import { projects, type ContentBlock } from "../data/projects";
@@ -51,6 +51,7 @@ export default function ProjectPage() {
     (project) => project.slug === slug || String(project.id) === slug,
   );
   const [activeIndex, setActiveIndex] = useState(0);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const sections = useMemo(() => {
     if (!project) return [];
@@ -69,6 +70,29 @@ export default function ProjectPage() {
   }, [project, lang]);
 
   const activeSection = sections[activeIndex] ?? sections[0];
+
+  function handleTabKeyDown(e: React.KeyboardEvent, index: number) {
+    const count = sections.length;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = (index + 1) % count;
+      setActiveIndex(next);
+      tabRefs.current[next]?.focus();
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      e.preventDefault();
+      const prev = (index - 1 + count) % count;
+      setActiveIndex(prev);
+      tabRefs.current[prev]?.focus();
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      setActiveIndex(0);
+      tabRefs.current[0]?.focus();
+    } else if (e.key === "End") {
+      e.preventDefault();
+      setActiveIndex(count - 1);
+      tabRefs.current[count - 1]?.focus();
+    }
+  }
 
   const description =
     lang === "fr" && project?.descriptionFr
@@ -166,13 +190,26 @@ export default function ProjectPage() {
         </div>
 
         {sections.length > 1 && (
-          <div className="project-section-controls">
+          <div
+            className="project-section-controls"
+            role="tablist"
+            aria-label="Film sections"
+          >
             {sections.map((section, index) => (
               <button
                 key={section.title}
+                id={`tab-${index}`}
+                ref={(el) => {
+                  tabRefs.current[index] = el;
+                }}
                 className={`project-tab ${index === activeIndex ? "active" : ""}`}
                 type="button"
+                role="tab"
+                aria-selected={index === activeIndex}
+                aria-controls="tab-panel"
+                tabIndex={index === activeIndex ? 0 : -1}
                 onClick={() => setActiveIndex(index)}
+                onKeyDown={(e) => handleTabKeyDown(e, index)}
               >
                 {section.title}
               </button>
@@ -180,7 +217,15 @@ export default function ProjectPage() {
           </div>
         )}
 
-        <div className="project-content">
+        <div
+          className="project-content"
+          id="tab-panel"
+          role={sections.length > 1 ? "tabpanel" : undefined}
+          aria-labelledby={
+            sections.length > 1 ? `tab-${activeIndex}` : undefined
+          }
+          tabIndex={sections.length > 1 ? 0 : undefined}
+        >
           {activeSection?.content?.map((block, index) =>
             renderBlock(block, index),
           )}

@@ -59,7 +59,17 @@ export default function Loader({ onComplete, isReady }: LoaderProps) {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
+      aria-busy={progress < 100}
     >
+      {/* Screen reader live region — announces start and completion */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {progress === 0
+          ? loadingText
+          : progress >= 100
+            ? "Loading complete"
+            : null}
+      </div>
+
       <motion.div
         className="loader-brand"
         initial={{ opacity: 0, y: 20 }}
@@ -76,11 +86,19 @@ export default function Loader({ onComplete, isReady }: LoaderProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
+        aria-hidden="true"
       >
         {loadingText}
       </motion.div>
 
-      <div className="loader-progress-container">
+      <div
+        className="loader-progress-container"
+        role="progressbar"
+        aria-valuenow={progress}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label={loadingText}
+      >
         <motion.div
           className="loader-progress-bar"
           initial={{ width: 0 }}
@@ -94,6 +112,7 @@ export default function Loader({ onComplete, isReady }: LoaderProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.3 }}
+        aria-hidden="true"
       >
         {progress}%
       </motion.div>

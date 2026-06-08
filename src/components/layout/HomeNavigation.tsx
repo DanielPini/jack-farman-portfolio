@@ -1,5 +1,7 @@
 import { motion } from "motion/react";
 import { Link, useLocation } from "react-router-dom";
+
+const MotionLink = motion(Link);
 import { useViewport } from "../../hooks/useViewport";
 import { useLang } from "../../context/LanguageContext";
 import { translations } from "../../i18n/translations";
@@ -14,34 +16,49 @@ function NavPill({ to, label }: { to: string; label: string }) {
   const isActive = useActivePath()(to);
 
   if (isActive) {
-    return <span className="nav-link nav-link--active">{label}</span>;
+    return (
+      <span className="nav-link nav-link--active" aria-current="page">
+        {label}
+      </span>
+    );
   }
 
   return (
-    <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 0.975 }}>
-      <Link to={to} className="nav-link">
-        {label}
-      </Link>
-    </motion.div>
+    <MotionLink
+      to={to}
+      className="nav-link"
+      whileHover={{ scale: 1.025 }}
+      whileTap={{ scale: 0.975 }}
+    >
+      {label}
+    </MotionLink>
   );
 }
 
 function LangSwitcher() {
   const { lang, setLang } = useLang();
   return (
-    <div className="lang-switcher">
+    <div
+      className="lang-switcher"
+      role="group"
+      aria-label="Language selection"
+    >
       <button
         className={`lang-btn${lang === "en" ? " lang-btn--active" : ""}`}
         onClick={() => setLang("en")}
         aria-label="Switch to English"
+        aria-pressed={lang === "en"}
       >
         EN
       </button>
-      <span className="lang-divider">|</span>
+      <span className="lang-divider" aria-hidden="true">
+        |
+      </span>
       <button
         className={`lang-btn${lang === "fr" ? " lang-btn--active" : ""}`}
         onClick={() => setLang("fr")}
         aria-label="Passer en français"
+        aria-pressed={lang === "fr"}
       >
         FR
       </button>
@@ -57,7 +74,7 @@ export default function HomeNavigation() {
 
   if (isMobile) {
     return (
-      <nav className="home-navigation mobile-nav">
+      <nav className="home-navigation mobile-nav" aria-label="Primary navigation">
         <motion.div className="nav-center" layoutId="jack-farman-text">
           <Link to="/" className="nav-center-link">
             Jack Farman
@@ -75,7 +92,7 @@ export default function HomeNavigation() {
   }
 
   return (
-    <nav className="home-navigation">
+    <nav className="home-navigation" aria-label="Primary navigation">
       <div className="nav-left">
         <NavPill to="/film-practice" label={t.filmPractice} />
         <NavPill to="/koinpost" label={t.leKoinpost} />

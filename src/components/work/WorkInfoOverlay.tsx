@@ -1,14 +1,32 @@
+import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import type { Project } from "../../data/projects";
 
 type Props = {
   project: Project;
-  onClose: () => void; // Callback to close the overlay
+  onClose: () => void;
 };
 
 export default function WorkInfoOverlay({ project, onClose }: Props) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const overlayId = "work-info-dialog";
+  const titleId = "work-info-title";
+
+  // Focus the close button when the overlay opens
+  useEffect(() => {
+    closeButtonRef.current?.focus();
+  }, []);
+
+  // Close on Escape key
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   return (
-    // Dark overlay background
     <motion.div
       className="work-info-overlay"
       initial={{ opacity: 0 }}
@@ -24,15 +42,20 @@ export default function WorkInfoOverlay({ project, onClose }: Props) {
         alignItems: "center",
         zIndex: 1000,
       }}
+      aria-hidden="true"
     >
-      {/* Modal content container */}
       <motion.div
+        id={overlayId}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
         className="work-info-content"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
         transition={{ duration: 0.3 }}
-        onClick={(e) => e.stopPropagation()} // Don't close when clicking inside
+        onClick={(e) => e.stopPropagation()}
+        aria-hidden="false"
         style={{
           backgroundColor: "white",
           borderRadius: "12px",
@@ -44,8 +67,8 @@ export default function WorkInfoOverlay({ project, onClose }: Props) {
           position: "relative",
         }}
       >
-        {/* Close button */}
         <motion.button
+          ref={closeButtonRef}
           onClick={onClose}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -64,18 +87,17 @@ export default function WorkInfoOverlay({ project, onClose }: Props) {
             alignItems: "center",
             justifyContent: "center",
           }}
-          aria-label="Close overlay"
+          aria-label="Close dialog"
         >
           ✕
         </motion.button>
 
-        {/* Project information */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <h2 style={{ marginTop: 0, marginBottom: "10px" }}>
+          <h2 id={titleId} style={{ marginTop: 0, marginBottom: "10px" }}>
             {project.title}
           </h2>
 
