@@ -378,7 +378,7 @@ export const projects: Project[] = [
     description:
       "Part 1 of the Espèces Pionnières trilogy, rooted in urban care and the future metro neighborhood of Nanterre.",
     descriptionFr:
-      "Partie 1 de la trilogie Espèces Pionnières, enracinée dans le soin urbain et le futur quartier de la ligne de métro de Nanterre.",
+      "Volet 1 de la trilogie, ce premier film raconte l'avenir de la végétalisation du quartier de la ligne de métro de Nanterre.",
     screenings: [
       "Centre Pompidou — Hors-Pistes/Hors Champs 2026, Festival Itinérant à la Vallée en Vendée",
       "La Villette — Le Consulat de la Terre, cycle de conférences avec TVK, 2026",
@@ -400,7 +400,7 @@ export const projects: Project[] = [
       { type: "heading", text: "Faire oeuvre, faire écosystème" },
       {
         type: "paragraph",
-        text: "Un film sur l'émergence de pratiques de soin autour d'un arbre espèce pionnière à Nanterre, la future ligne de métro, et la possibilité de nouvelles relations entre voisins, plantes et sol.",
+        text: "Un film réalisé autour de l'émergence de la convivialité avec les espèces pionnières à Nanterre, la future ligne de métro, et les relations entre voisins, plantes et sol.",
       },
       {
         type: "video",
@@ -425,7 +425,7 @@ export const projects: Project[] = [
     description:
       "Part 2 of the trilogy, following composting, bees, and soil regeneration at Zone Sensible in Aubervilliers.",
     descriptionFr:
-      "Partie 2 de la trilogie, suivant le compostage, les abeilles et la régénération du sol à Zone Sensible à Aubervilliers.",
+      "Volet 2 de la trilogie, cette deuxième partie raconte les cycles de vie et de mort autour du compostage et d'essaimage dans les fermes urbaines franciliennes.",
     screenings: [
       "Centre Pompidou — Hors-Pistes/Hors Champs 2026, Festival Itinérant à la Vallée en Vendée",
       "La Villette — Le Consulat de la Terre, cycle de conférences avec TVK, 2026",
@@ -447,7 +447,7 @@ export const projects: Project[] = [
       { type: "heading", text: "Espèces Pionnières Partie 2" },
       {
         type: "paragraph",
-        text: "Un film centré sur une ferme urbaine et la façon dont les espèces pionnières créent les conditions pour que le sol redevienne productif, au milieu des déchets, du compost et du pouls d'un écosystème vivant.",
+        text: "Un film réalisé dans une ferme urbaine et la façon dont les espèces pionnières créent les conditions pour que le sol redevienne fertile, au sein d'un écosystème vivant.",
       },
       {
         type: "video",
@@ -470,7 +470,7 @@ export const projects: Project[] = [
     description:
       "Part 3 of the trilogy, examining buried waterways, commemoration, and the visibility of water in Saint-Denis and Vendée.",
     descriptionFr:
-      "Partie 3 de la trilogie, examinant les cours d'eau enfouis, la commémoration et la visibilité de l'eau à Saint-Denis et en Vendée.",
+      "Volet 3 de la trilogie, cette dernière partie enquête et raconte l'enfouissement de la Vieille Mer, sa visibilité et sa commémoration.",
     screenings: [
       "Centre Pompidou — Hors-Pistes/Hors Champs 2026, Festival Itinérant à la Vallée en Vendée",
       "La Villette — Le Consulat de la Terre, cycle de conférences avec TVK, 2026",
@@ -492,7 +492,7 @@ export const projects: Project[] = [
       { type: "heading", text: "Eaux et pays" },
       {
         type: "paragraph",
-        text: "Un film sur la rivière enfouie La Vieille Mer, la cartographie collective à Saint-Denis, et les questions plus larges sur l'eau, la mémoire et le soin environnemental.",
+        text: "Un film réalisé autour de la rivière enfouie La Vieille Mer, la cartographie collective, et les questions plus larges sur l'eau, la mémoire et le soin du territoire.",
       },
       {
         type: "video",

@@ -54,7 +54,7 @@ export default function Work() {
             </div>
           </div>
 
-          {isDesktop && active && (
+          {isDesktop && active && !active.sections?.length && (
             <motion.div
               className="work-right"
               style={{ top: hoverOffset }}

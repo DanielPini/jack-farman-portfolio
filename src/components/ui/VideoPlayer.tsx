@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import type { Project } from "../../data/projects";
 import { videoPosters } from "../../data/videoPosters";
 import "./VideoPlayer.css";
@@ -9,7 +9,6 @@ interface VideoPlayerProps {
 
 export default function VideoPlayer({ projects }: VideoPlayerProps) {
   const videoRefs = useRef<HTMLVideoElement[]>([]);
-  const [activeSound, setActiveSound] = useState<number | null>(null);
 
   const videoProjects = projects
     .filter((p) => p.videos?.length && p.slug !== "especes-pionnieres")
@@ -23,16 +22,6 @@ export default function VideoPlayer({ projects }: VideoPlayerProps) {
       }
     });
   }, [videoProjects]);
-
-  useEffect(() => {
-    videoRefs.current.forEach((video, i) => {
-      if (video) video.muted = activeSound !== i;
-    });
-  }, [activeSound]);
-
-  function toggleSound(index: number) {
-    setActiveSound((prev) => (prev === index ? null : index));
-  }
 
   if (videoProjects.length === 0) return null;
 
@@ -61,13 +50,6 @@ export default function VideoPlayer({ projects }: VideoPlayerProps) {
                 {project.year} • {project.category || "Film"}
               </div>
             </div>
-            <button
-              className={`video-sound-btn${activeSound === index ? " video-sound-btn--active" : ""}`}
-              onClick={() => toggleSound(index)}
-              aria-label={activeSound === index ? "Mute" : "Unmute"}
-            >
-              {activeSound === index ? "Mute" : "Unmute"}
-            </button>
           </div>
         ))}
       </div>
