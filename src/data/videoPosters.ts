@@ -13,8 +13,8 @@ export const videoPosters: Record<string, string> = {
 
 // Full-quality poster frames (~1280px wide) switched in once canPlay fires.
 export const videoProperPosters: Record<string, string> = {
-  "/videos/Part_I_(faire_oeuvre_faire_ecosysteme).webm": "/images/poster_part_i.webp",
-  "/videos/Part_II_(exposome).webm": "/images/poster_part_ii.webp",
-  "/videos/Part_III_(eaux_et_pays).webm": "/images/poster_part_iii.webp",
+  "/videos/Part_I_(faire_oeuvre_faire_ecosysteme).webm": "/images/poster_part_i.v2.webp",
+  "/videos/Part_II_(exposome).webm": "/images/poster_part_ii.v2.webp",
+  "/videos/Part_III_(eaux_et_pays).webm": "/images/poster_part_iii.v2.webp",
   "/videos/LeKoinpost_FILM.webm": "/images/poster_koinpost.webp",
 };
