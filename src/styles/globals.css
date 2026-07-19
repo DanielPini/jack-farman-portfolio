@@ -813,7 +813,7 @@ p {
   .work-card-image {
     display: block;
     width: 100%;
-    aspect-ratio: 3 / 2;
+    /* aspect-ratio: 3 / 2; */
     object-fit: cover;
     margin-bottom: 0.75rem;
   }
@@ -878,7 +878,6 @@ p {
   height: auto;
   display: block;
 }
-
 
 /* Home page wrapper — desktop clips to viewport, mobile scrolls */
 .home-wrapper {

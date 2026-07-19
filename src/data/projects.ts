@@ -464,6 +464,7 @@ export const projects: Project[] = [
     year: 2026,
     videos: ["/videos/Part_III_(eaux_et_pays).webm"],
     images: [
+      "/images/eaux_et_pays1.webp",
       "/images/Pioneer_Species_Part_III_-_Image_A.webp",
       "/images/Pioneer_Species_Part_III_-_Image_B.webp",
     ],
@@ -472,8 +473,8 @@ export const projects: Project[] = [
     descriptionFr:
       "Volet 3 de la trilogie, cette dernière partie enquête et raconte l'enfouissement de la Vieille Mer, sa visibilité et sa commémoration.",
     screenings: [
-      "Centre Pompidou — Hors-Pistes/Hors Champs 2026, Festival Itinérant à la Vallée en Vendée",
-      "La Villette — Le Consulat de la Terre, cycle de conférences avec TVK, 2026",
+      // "Centre Pompidou — Hors-Pistes/Hors Champs 2026, Festival Itinérant à la Vallée en Vendée",
+      // "La Villette — Le Consulat de la Terre, cycle de conférences avec TVK, 2026",
     ],
     category: "Film Practice",
     content: [
